@@ -20,7 +20,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-//    1. 상품 작성
+    //    1. 상품 작성
     @PostMapping("")
     public MessageResponseDto createProduct(
             @RequestBody @Valid ProductRequestDto productRequestDto,
