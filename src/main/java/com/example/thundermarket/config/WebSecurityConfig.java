@@ -31,7 +31,7 @@ public class WebSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         // h2-console 사용 및 resources 접근 허용 설정
         return (web) -> web.ignoring()
@@ -51,7 +51,6 @@ public class WebSecurityConfig {
         http.authorizeRequests().antMatchers("/signup").permitAll()
                 .antMatchers( "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/products/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new ExceptionHandlerFilter(), JwtAuthFilter.class);
