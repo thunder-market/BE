@@ -15,41 +15,41 @@ public class Product extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    이미지 임시
-    @Column(nullable = false)
+    @Column(nullable = false) // 이미지 임시
     private String img;
 
     @Column(nullable = false)
     private String title;
 
-//    중고면 t 새상품은 f
-    @Column(nullable = false)
+    @Column(nullable = false) // 중고면 t 새상품은 f
     private boolean used;
 
-//    교환 가능 t
-    @Column(nullable = false)
+    @Column(nullable = false) // 교환 가능 t
     private boolean exchange;
 
     @Column(nullable = false)
     private int price;
 
-//    상품 설명
     @Column(nullable = false)
+    private boolean deliveryFee;
+
+    @Column(nullable = false) // 상품 설명
     private String desc;
+
+    @Column(nullable = false) // 판매완료면 t, 아니면 f
+    private boolean isDone = false;
 
     @Column(nullable = false)
     private int quantity;
 
-//    천둥페이 사용 여부 t
-    @Column(nullable = false)
+    @Column(nullable = false) // 천둥페이 사용 여부 t
     private boolean thunderPay;
 
-//    판매완료면 t, 아니면 f
     @Column(nullable = false)
-    private boolean isDone = false;
+    private int category;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Product(ProductRequestDto productRequestDto, User user) {
@@ -58,10 +58,12 @@ public class Product extends Timestamped {
         this.used = productRequestDto.isUsed();
         this.exchange = productRequestDto.isExchange();
         this.price = productRequestDto.getPrice();
+        this.deliveryFee = productRequestDto.isDeliveryFee();
         this.desc = productRequestDto.getDesc();
         this.quantity = productRequestDto.getQuantity();
         this.user = user;
         this.thunderPay = productRequestDto.isThunderPay();
         this.isDone = productRequestDto.isDone();
+        this.category = productRequestDto.getCateCode();
     }
 }
