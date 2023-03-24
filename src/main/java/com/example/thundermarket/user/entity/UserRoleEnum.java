@@ -1,4 +1,4 @@
-package com.example.thundermarket.users.entity;
+package com.example.thundermarket.user.entity;
 
 public enum UserRoleEnum {
     USER(Authority.USER),  // 사용자 권한

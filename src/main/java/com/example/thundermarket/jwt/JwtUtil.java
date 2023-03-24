@@ -1,7 +1,7 @@
 package com.example.thundermarket.jwt;
 
 import com.example.thundermarket.security.UserDetailsServiceImpl;
-import com.example.thundermarket.users.entity.UserRoleEnum;
+import com.example.thundermarket.user.entity.UserRoleEnum;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
@@ -89,7 +89,7 @@ public class JwtUtil {
 
     // 인증 객체 생성
     public Authentication createAuthentication(String username) {
-        UserDetails userDetails = userDetailsService.loadMemberByUsername(username);
+        UserDetails userDetails = userDetailsService.loadUsersByUsername(username);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 

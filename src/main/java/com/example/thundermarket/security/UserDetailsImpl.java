@@ -1,6 +1,6 @@
 package com.example.thundermarket.security;
 
-import com.example.thundermarket.users.entity.User;
+import com.example.thundermarket.user.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
