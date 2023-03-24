@@ -21,7 +21,7 @@ public class ProductController {
     private final ProductService productService;
 
 //    1. 상품 작성
-    @PostMapping("/")
+    @PostMapping("")
     public MessageResponseDto createProduct(
             @RequestBody @Valid ProductRequestDto productRequestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
