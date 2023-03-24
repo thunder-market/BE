@@ -1,5 +1,7 @@
 package com.example.thundermarket.products.entity;
 
+import com.example.thundermarket.products.dto.ProductRequestDto;
+import com.example.thundermarket.users.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,6 +36,19 @@ public class Product extends Timestamped {
     @Column(nullable = false)
     private int quantity;
 
+    @ManyToOne
+    @JoinColumn(name = "userid")
     @Column(nullable = false)
-    private Long userid;
+    private User user;
+
+    public Product(ProductRequestDto productRequestDto, User user) {
+        this.img = productRequestDto.getImg();
+        this.title = productRequestDto.getTitle();
+        this.used = productRequestDto.isUsed();
+        this.exchange = productRequestDto.isExchange();
+        this.price = productRequestDto.getPrice();
+        this.desc = productRequestDto.getDesc();
+        this.quantity = productRequestDto.getQuantity();
+        this.user = user;
+    }
 }

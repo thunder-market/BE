@@ -11,7 +11,9 @@ public class ProductRequestDto {
     private boolean used;
     private boolean exchange;
     private int price;
+    private boolean deliveryFee;
     private String desc;
+    private boolean isDone;
     private int quantity;
     private boolean thunderPay;
 }
