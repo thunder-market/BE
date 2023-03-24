@@ -1,7 +1,7 @@
 package com.example.thundermarket.security;
 
-import com.example.thundermarket.users.entity.User;
-import com.example.thundermarket.users.repository.UserRepository;
+import com.example.thundermarket.user.entity.User;
+import com.example.thundermarket.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,10 +15,10 @@ public class UserDetailsServiceImpl {
 
 //    userRepository에
     public UserDetails loadUsersByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(
+        User user = userRepository.findByUserName(username).orElseThrow(
                 () -> new UsernameNotFoundException("유저를 찾을 수 없습니다.")
         );
-        return new UserDetailsImpl(user, user.getUsername());
+        return new UserDetailsImpl(user, user.getUserName());
 
 
     }
