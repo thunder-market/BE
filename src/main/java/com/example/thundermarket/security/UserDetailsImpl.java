@@ -1,13 +1,26 @@
 package com.example.thundermarket.security;
 
+import com.example.thundermarket.users.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
 public class UserDetailsImpl implements UserDetails {
+
+    private final User user;
+    private final String username;
+
+    public UserDetailsImpl(User user, String username) {
+        this.user = user;
+        this.username = username;
+    }
+
+
+//    유저 role 필요하면 넣어야한다!!
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return null;
     }
 
@@ -18,7 +31,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
