@@ -51,6 +51,7 @@ public class WebSecurityConfig {
 //        jwt필터와 필터예외처리필터 2개 생성
         http.authorizeRequests().antMatchers("/signup").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/kakao/callback").permitAll()
                 .antMatchers("/category").permitAll()
                 .antMatchers(HttpMethod.GET, "/products/**").permitAll()
                 .anyRequest().authenticated()
