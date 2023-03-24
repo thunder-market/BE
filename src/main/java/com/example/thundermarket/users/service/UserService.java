@@ -2,6 +2,7 @@ package com.example.thundermarket.users.service;
 
 import com.example.thundermarket.jwt.JwtUtil;
 import com.example.thundermarket.products.dto.MessageResponseDto;
+import com.example.thundermarket.users.dto.LoginRequestDto;
 import com.example.thundermarket.users.dto.SignupRequestDto;
 import com.example.thundermarket.users.entity.User;
 import com.example.thundermarket.users.repository.UserRepository;
@@ -63,7 +64,7 @@ public class UserService {
 
 //    로그인
     @Transactional
-    public MessageResponseDto login(SignupRequestDto dto, HttpServletResponse response){
+    public MessageResponseDto login(LoginRequestDto dto, HttpServletResponse response){
         String username = dto.getUsername();
 
         User user = userRepository.findByusername(username).orElseThrow(

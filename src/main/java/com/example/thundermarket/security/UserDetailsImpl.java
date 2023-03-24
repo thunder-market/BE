@@ -36,15 +36,15 @@ public class UserDetailsImpl implements UserDetails {
     public User getUser() {
         return user;
     }
-
-    @Override
-    public String getusername() {
-        return username;
-    }
     
     @Override
     public String getPassword() {
         return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     @Override

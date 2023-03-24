@@ -2,6 +2,7 @@ package com.example.thundermarket.users.controller;
 
 import com.example.thundermarket.jwt.JwtUtil;
 import com.example.thundermarket.products.dto.MessageResponseDto;
+import com.example.thundermarket.users.dto.LoginRequestDto;
 import com.example.thundermarket.users.dto.SignupRequestDto;
 import com.example.thundermarket.users.service.KakaoService;
 import com.example.thundermarket.users.service.UserService;
@@ -23,13 +24,13 @@ public class UserConroller {
 
 //   1. 회원 가입
     @PostMapping("/signup")
-    public MessageResponseDto signup(@Valid SignupRequestDto dto){
+    public MessageResponseDto signup(@Valid @RequestBody SignupRequestDto dto){
         return userService.signup(dto);
     }
 
 //    2. 로그인
     @PostMapping("/login")
-    public MessageResponseDto login(@Valid SignupRequestDto dto, HttpServletResponse response){
+    public MessageResponseDto login(@Valid @RequestBody LoginRequestDto dto, HttpServletResponse response){
         return userService.login(dto, response);
     }
 
