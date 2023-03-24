@@ -20,10 +20,11 @@ public class ProductController {
 
     private final ProductService productService;
 
+//    1. 상품 작성
     @PostMapping("/")
-    public MessageResponseDto createProdect(
+    public MessageResponseDto createProduct(
             @RequestBody @Valid ProductRequestDto productRequestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return new MessageResponseDto(productService.createProdect(productRequestDto, userDetails.getUser()));
+        return productService.createProduct(productRequestDto, userDetails.getUser());
     }
 }

@@ -18,9 +18,8 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public MessageResponseDto createProdect(ProductRequestDto productRequestDto,
-                                           User user) {
+    public MessageResponseDto createProduct(ProductRequestDto productRequestDto, User user) {
         productRepository.saveAndFlush(new Product(productRequestDto, user));
-        return new MessageResponseDto(HttpStatus.OK, "succees");
+        return new MessageResponseDto(HttpStatus.OK, "상품이 등록되었습니다.");
     }
 }

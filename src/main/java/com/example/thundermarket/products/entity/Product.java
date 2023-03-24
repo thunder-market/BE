@@ -30,15 +30,14 @@ public class Product extends Timestamped {
     @Column(nullable = false)
     private int price;
 
-    @Column(nullable = false, length = 6000)
+    @Column(nullable = false)
     private String desc;
 
     @Column(nullable = false)
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name = "userid")
-    @Column(nullable = false)
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
     public Product(ProductRequestDto productRequestDto, User user) {

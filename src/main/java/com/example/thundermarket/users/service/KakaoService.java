@@ -1,10 +1,10 @@
-package com.example.thundermarket.user.service;
+package com.example.thundermarket.users.service;
 
 import com.example.thundermarket.jwt.JwtUtil;
-import com.example.thundermarket.user.dto.KakaoUserInfoDto;
-import com.example.thundermarket.user.entity.User;
-import com.example.thundermarket.user.repository.UserRepository;
-import com.example.thundermarket.user.entity.UserRoleEnum;
+import com.example.thundermarket.users.dto.KakaoUserInfoDto;
+import com.example.thundermarket.users.entity.User;
+import com.example.thundermarket.users.repository.UserRepository;
+import com.example.thundermarket.users.entity.UserRoleEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,7 +42,7 @@ public class KakaoService {
         User kakaoUser = registerKakaoUserIfNeeded(kakaoUserInfo);
 
         // 4. JWT 토큰 반환
-        String createToken =  jwtUtil.createToken(kakaoUser.getUserName(), kakaoUser.getRole());
+        String createToken =  jwtUtil.createToken(kakaoUser.getUsername(), kakaoUser.getRole());
 //        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken);
 
         return createToken;
@@ -129,7 +129,7 @@ public class KakaoService {
                 // email: kakao email
                 String email = kakaoUserInfo.getEmail();
 
-                kakaoUser = new User(kakaoUserInfo.getNicknmae(), kakaoId, encodedPassword, email, UserRoleEnum.USER);
+                kakaoUser = new User(kakaoUserInfo.getNick(), kakaoId, encodedPassword, email, UserRoleEnum.USER);
             }
 
             userRepository.save(kakaoUser);

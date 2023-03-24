@@ -1,14 +1,14 @@
 package com.example.thundermarket.jwt;
 
 import com.example.thundermarket.security.UserDetailsServiceImpl;
-import com.example.thundermarket.user.entity.UserRoleEnum;
+import com.example.thundermarket.users.entity.UserRoleEnum;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.usernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -89,8 +89,8 @@ public class JwtUtil {
 
     // 인증 객체 생성
     public Authentication createAuthentication(String username) {
-        UserDetails userDetails = userDetailsService.loadUsersByUsername(username);
-        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        UserDetails userDetails = userDetailsService.loadUsersByusername(username);
+        return new usernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 
 }

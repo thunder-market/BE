@@ -4,7 +4,7 @@ import com.example.thundermarket.products.dto.MessageResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.usernameNotFoundException;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -19,7 +19,7 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             filterChain.doFilter(request,response);
-        }catch(UsernameNotFoundException e) {
+        }catch(usernameNotFoundException e) {
             jwtExceptionHandler(response,e.getMessage(), HttpStatus.BAD_REQUEST);
         }catch (RuntimeException e){
             jwtExceptionHandler(response,e.getMessage().split(":")[0], HttpStatus.BAD_REQUEST);
