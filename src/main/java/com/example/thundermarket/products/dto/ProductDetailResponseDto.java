@@ -1,8 +1,10 @@
 package com.example.thundermarket.products.dto;
 
 import com.example.thundermarket.products.entity.Product;
+import com.example.thundermarket.util.TimeInteval;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class ProductDetailResponseDto {
     private int quantity;
     private List<ProductListResponseDto> productList = new ArrayList<>();
     private boolean isAuth = false;
+    private String timeInterval;
 
     public ProductDetailResponseDto(Product getproduct, List<ProductListResponseDto> productListResponseDtos, boolean isAuth) {
         this.id = getproduct.getId();
@@ -39,6 +42,6 @@ public class ProductDetailResponseDto {
         this.quantity = getproduct.getQuantity();
         this.productList = productListResponseDtos;
         this.isAuth = isAuth;
-
+        this.timeInterval = TimeInteval.Calculate(getproduct.getCreatedAt());
     }
 }
