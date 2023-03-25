@@ -10,14 +10,12 @@ name: Java CI with Gradle
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 env:
   AWS_REGION: ap-northeast-2
-  S3_BUCKET_NAME: jinhyeokbucket95
-  CODE_DEPLOY_APPLICATION_NAME: my-codedeploy-app
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: my-codedeploy-deployment-group
+  S3_BUCKET_NAME: gybucket
+  CODE_DEPLOY_APPLICATION_NAME: clone_thunder
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: thunder
 
 permissions:
   contents: read
