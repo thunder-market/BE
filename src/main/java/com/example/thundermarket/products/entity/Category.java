@@ -26,14 +26,5 @@ public class Category {
 //    @OneToMany(mappedBy = "category")
 //    private List<Product> productList = new ArrayList<>();
 
-// 테스트로 만든 생성자
-    public Category(CategoryRequestDto categoryRequestDto) {
-        this.cateName = categoryRequestDto.getCateName();
-        this.cateCode = categoryRequestDto.getCateCode();
-    }
 
-    public Category(String cateName, int cateCode) {
-        this.cateName = cateName;
-        this.cateCode = cateCode;
-    }
 }

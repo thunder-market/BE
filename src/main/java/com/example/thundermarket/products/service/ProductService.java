@@ -5,6 +5,7 @@ import com.example.thundermarket.products.dto.ProductDetailResponseDto;
 import com.example.thundermarket.products.dto.ProductListResponseDto;
 import com.example.thundermarket.products.dto.ProductRequestDto;
 import com.example.thundermarket.products.entity.Product;
+import com.example.thundermarket.products.repository.CategoryRepository;
 import com.example.thundermarket.products.repository.ProductRepository;
 import com.example.thundermarket.users.entity.User;
 import com.example.thundermarket.users.entity.UserRoleEnum;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
 //    상품 작성
     @Transactional
