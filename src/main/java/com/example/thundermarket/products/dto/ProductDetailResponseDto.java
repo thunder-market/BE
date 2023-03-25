@@ -37,10 +37,7 @@ public class ProductDetailResponseDto {
         this.isDone = getproduct.isDone();
         this.thunderPay = getproduct.isThunderPay();
         this.quantity = getproduct.getQuantity();
-        for (int i = 0; i < 6; i++) {
-            productList.add(productListResponseDtos.get(i));
-        }
-
+        this.productList = productListResponseDtos;
         this.isAuth = isAuth;
 
     }
