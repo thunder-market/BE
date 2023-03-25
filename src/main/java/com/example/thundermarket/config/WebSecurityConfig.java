@@ -49,7 +49,7 @@ public class WebSecurityConfig {
 
 //        일단은 회원가입, 로그인, get으로 들어오는 상품조회만 허용하고 나머지 인증 받게 설정.
 //        jwt필터와 필터예외처리필터 2개 생성
-        http.authorizeRequests().antMatchers("/signup").permitAll()
+        http.authorizeRequests().antMatchers("/signup/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/kakao/callback").permitAll()
                 .antMatchers("/category").permitAll()
