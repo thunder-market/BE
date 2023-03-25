@@ -2,6 +2,7 @@ package com.example.thundermarket.products.dto;
 
 import lombok.Getter;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -11,6 +12,7 @@ public class ProductRequestDto {
 
     private String img;
 
+    @NotBlank(message = "제목을 입력하세요.")
     private String title;
 
     private int cateCode;
@@ -24,6 +26,7 @@ public class ProductRequestDto {
     private boolean deliveryFee;
 
     @Size(min = 10, max = 2000) // 추후 크기 조정
+    @NotBlank(message = "내용을 입력하세요.")
     private String desc;
 
     private boolean isDone;
