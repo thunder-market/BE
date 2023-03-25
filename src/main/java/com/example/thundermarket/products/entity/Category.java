@@ -1,9 +1,7 @@
 package com.example.thundermarket.products.entity;
 
-import com.example.thundermarket.products.dto.CategoryRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,13 +16,12 @@ public class Category {
     private Long id;
 
     @Column(nullable = false)
-    private String cateName;
-
-    @Column(nullable = false)
     private int cateCode;
 
-//    @OneToMany(mappedBy = "category")
-//    private List<Product> productList = new ArrayList<>();
+    @Column(nullable = false)
+    private String cateName;
 
+    @OneToMany(mappedBy = "cateCode")
+    private List<Product> productList = new ArrayList<>();
 
 }

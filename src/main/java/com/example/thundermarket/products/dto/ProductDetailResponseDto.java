@@ -4,7 +4,6 @@ import com.example.thundermarket.products.entity.Product;
 import com.example.thundermarket.util.TimeInteval;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class ProductDetailResponseDto {
         this.id = getproduct.getId();
         this.img = getproduct.getImg();
         this.title = getproduct.getTitle();
-        this.cateCode = getproduct.getCategory();
+        this.cateCode = getproduct.getCateCode();
         this.used = getproduct.isUsed();
         this.exchange = getproduct.isExchange();
         this.deliveryFee = getproduct.isDeliveryFee();
