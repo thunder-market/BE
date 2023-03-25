@@ -6,9 +6,12 @@ import com.example.thundermarket.products.dto.ProductListResponseDto;
 import com.example.thundermarket.products.dto.ProductRequestDto;
 import com.example.thundermarket.products.entity.Product;
 import com.example.thundermarket.products.repository.ProductRepository;
+import com.example.thundermarket.security.UserDetailsImpl;
 import com.example.thundermarket.users.entity.User;
+import com.example.thundermarket.users.entity.UserRoleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,10 +41,16 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public ProductDetailResponseDto getProductDetailList(Long pdid) {
+    public ProductDetailResponseDto getProductDetailList(Long pdid, User user) {
         Product getproduct = productRepository.findById(pdid).orElseThrow(
                 () -> new IllegalArgumentException("게시물을 찾을 수 없습니다.")
         );
+        boolean isAuth = false;
+        if (user != null) {
+            if (user.getRole() == UserRoleEnum.ADMIN || user.getId().equals(getproduct.getUser().getId())){
+                isAuth = true;
+            }
+        }
 
         List<ProductListResponseDto> productListResponseDtos = new ArrayList<>();
         List<Product> products = productRepository.findByIsDoneFalseOrderByCreatedAtDesc();
@@ -49,6 +58,6 @@ public class ProductService {
             productListResponseDtos.add(new ProductListResponseDto(product));
         }
 
-        return new ProductDetailResponseDto(getproduct, productListResponseDtos);
+        return new ProductDetailResponseDto(getproduct, productListResponseDtos, isAuth);
     }
 }
