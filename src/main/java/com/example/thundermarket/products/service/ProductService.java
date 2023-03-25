@@ -75,9 +75,9 @@ public class ProductService {
         if (isMatchUser(product, user) || user.getRole() == UserRoleEnum.ADMIN) {
             product.update(productRequestDto);
             return new MessageResponseDto(HttpStatus.OK, "게시글이 수정 되었습니다.");
-        } else {
-            throw new IllegalArgumentException("해당 권한이 없습니다");
         }
+        throw new IllegalArgumentException("해당 권한이 없습니다");
+
     }
 
     @Transactional
@@ -90,9 +90,9 @@ public class ProductService {
         if (isMatchUser(product, user) || user.getRole() == UserRoleEnum.ADMIN) {
             productRepository.deleteById(pdid);
             return new MessageResponseDto(HttpStatus.OK, "게시글이 삭제 되었습니다.");
-        } else {
-            throw new IllegalArgumentException("해당 권한이 없습니다");
         }
+        throw new IllegalArgumentException("해당 권한이 없습니다");
+
 
     }
 
