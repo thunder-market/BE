@@ -68,26 +68,19 @@ public class UserService {
         return new MessageResponseDto(HttpStatus.OK, "로그인이 완료되었습니다.");
     }
 
-//    이메일 중복 체크
+//    이메일 중복 체크. 이메일이 있으면 true - 중복된 이메일 반환 / 이메일이 없으면 false 사용가능한 이메일
     public MessageResponseDto signupEmailCheck(CheckEmailRequestDto dto) {
-
-        Optional<User> user = userRepository.findByEmail(dto.getEmail());
-        if(user.isPresent()){
-            return new MessageResponseDto(HttpStatus.BAD_REQUEST, "중복된 이메일입니다.");
-        }
-
-        return new MessageResponseDto(HttpStatus.OK, "사용가능한 이메일입니다.");
-
+        boolean isEmailExist = userRepository.existsByEmail(dto.getEmail());
+        return isEmailExist
+                ? new MessageResponseDto(HttpStatus.BAD_REQUEST, "중복된 이메일입니다.")
+                : new MessageResponseDto(HttpStatus.OK, "사용가능한 이메일입니다.");
     }
 
-//    닉네임 중복 체크
+//    닉네임 중복 체크. 닉네임이 있으면 true - 중복된 닉네임 반환 / 닉네임이 없으면 false 사용가능한 닉네임
     public MessageResponseDto signupNickCheck(CheckNickRequestDto dto) {
-        Optional<User> user = userRepository.findByNick(dto.getNick());
-        if(user.isPresent()){
-            return new MessageResponseDto(HttpStatus.BAD_REQUEST, "중복된 닉네임입니다.");
-        }
-
-        return new MessageResponseDto(HttpStatus.OK, "사용가능한 닉네임입니다.");
-
+        boolean isNickExist = userRepository.existsByNick(dto.getNick());
+        return isNickExist
+                ? new MessageResponseDto(HttpStatus.BAD_REQUEST, "중복된 닉네임입니다.")
+                : new MessageResponseDto(HttpStatus.OK, "사용가능한 닉네임입니다.");
     }
 }
