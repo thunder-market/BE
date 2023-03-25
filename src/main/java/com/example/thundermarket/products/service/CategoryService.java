@@ -1,12 +1,8 @@
 package com.example.thundermarket.products.service;
 
-import com.example.thundermarket.products.dto.CategoryRequestDto;
-import com.example.thundermarket.products.dto.MessageResponseDto;
-import com.example.thundermarket.products.entity.Category;
 import com.example.thundermarket.products.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,9 +11,5 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    @Transactional
-    public String createCategory(CategoryRequestDto categoryRequestDto) {
-        categoryRepository.save(new Category(categoryRequestDto));
-        return "성공";
-    }
+
 }
