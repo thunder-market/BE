@@ -13,11 +13,11 @@ public class UserDetailsServiceImpl {
 
     private final UserRepository userRepository;
     
-    public UserDetails loadUsersByusername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByusername(username).orElseThrow(
+    public UserDetails loadUsersByusername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("유저를 찾을 수 없습니다.")
         );
-        return new UserDetailsImpl(user, user.getUsername());
+        return new UserDetailsImpl(user, user.getEmail());
 
     }
 

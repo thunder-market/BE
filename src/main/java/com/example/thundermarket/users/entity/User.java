@@ -13,8 +13,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String username;
+//    @Column(nullable = false, unique = true)
+//    private String username;
 
     @Column(nullable = false)
     private String password;
@@ -26,24 +26,24 @@ public class User {
     private String email;
 
 //    카카오 가입시 닉네임 처리 생각후 수정
-    @Column
+    @Column(nullable = false, unique = true)
     private String nick;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
-    public User(String username, String password, String email,String nick, UserRoleEnum role) {
-        this.username = username;
-        this.password = password;
+    public User(String email,String password,String nick, UserRoleEnum role) {
         this.email = email;
+        this.password = password;
         this.nick = nick;
         this.role = role;
     }
 
-    public User(String username, Long kakaoId, String password, String email, UserRoleEnum role) {
-        this.username = username;
+    public User(Long kakaoId,String nick, String password, String email, UserRoleEnum role) {
+//        this.username = username;
         this.kakaoId = kakaoId;
+        this.nick = nick;
         this.password = password;
         this.email = email;
         this.role = role;
