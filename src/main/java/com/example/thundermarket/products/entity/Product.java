@@ -46,7 +46,7 @@ public class Product extends Timestamped {
     private boolean thunderPay;
 
     @Column(nullable = false)
-    private int category;
+    private int cateCode;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -64,7 +64,7 @@ public class Product extends Timestamped {
         this.user = user;
         this.thunderPay = productRequestDto.isThunderPay();
         this.isDone = productRequestDto.isDone();
-        this.category = productRequestDto.getCateCode();
+        this.cateCode = productRequestDto.getCateCode();
     }
 
     public void update(ProductRequestDto productRequestDto) {
@@ -78,6 +78,6 @@ public class Product extends Timestamped {
         this.quantity = productRequestDto.getQuantity();
         this.thunderPay = productRequestDto.isThunderPay();
         this.isDone = productRequestDto.isDone();
-        this.category = productRequestDto.getCateCode();
+        this.cateCode = productRequestDto.getCateCode();
     }
 }
