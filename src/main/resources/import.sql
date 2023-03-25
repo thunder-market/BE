@@ -2,7 +2,7 @@ INSERT INTO USERS VALUES (1, 'user1@example.com', null, 'user1', 'password1@#$',
 INSERT INTO USERS VALUES (2, 'user2@example.com', null, 'user2', 'password2@#$', 'USER');
 INSERT INTO USERS VALUES (3, 'user3@example.com', null, 'user3', 'password3@#$', 'USER');
 INSERT INTO USERS VALUES (4, 'user4@example.com', null, 'user4', 'password4@#$', 'USER');
-INSERT INTO USERS VALUES (5, 'user5@example.com', null, 'user5', 'password5@#$', 'USER';
+INSERT INTO USERS VALUES (5, 'user5@example.com', null, 'user5', 'password5@#$', 'USER');
 
 INSERT INTO CATEGORY VALUES(1, 100, '여성의류');
 INSERT INTO CATEGORY VALUES(2, 200, '남성의류');
