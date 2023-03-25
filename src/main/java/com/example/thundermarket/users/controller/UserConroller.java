@@ -30,12 +30,12 @@ public class UserConroller {
     public MessageResponseDto signup(@Valid @RequestBody SignupRequestDto dto){
         return userService.signup(dto);
     }
-    //회원 가입시 이메일 체크
+    // 1-1. 회원 가입시 이메일 체크
     @PostMapping("/signup/check-email")
     public MessageResponseDto signupEmailCheck(@Valid @RequestBody CheckEmailRequestDto dto){
         return userService.signupEmailCheck(dto);
     }
-    //회원 가입시 닉네임 체크
+    // 1-2. 회원 가입시 닉네임 체크
     @PostMapping("/signup/check-nick")
     public MessageResponseDto signupEmailCheck(@Valid @RequestBody CheckNickRequestDto dto){
         return userService.signupNickCheck(dto);
