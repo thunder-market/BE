@@ -1,7 +1,12 @@
 package com.example.thundermarket.products.dto;
 
 import com.example.thundermarket.products.entity.Product;
+import com.example.thundermarket.util.TimeInteval;
 import lombok.Getter;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Getter
 public class ProductListResponseDto {
@@ -12,6 +17,7 @@ public class ProductListResponseDto {
     private int price;
     private boolean isDone;
     private boolean thunderPay;
+    private String timeInterval;
 
     public ProductListResponseDto(Product product) {
         this.id = product.getId();
@@ -20,5 +26,6 @@ public class ProductListResponseDto {
         this.price = product.getPrice();
         this.isDone = product.isDone();
         this.thunderPay = product.isThunderPay();
+        this.timeInterval = TimeInteval.Calculate(product.getCreatedAt());
     }
 }
