@@ -47,4 +47,19 @@ public class ProductController {
 
         return productService.getProductDetailList(pdid, user);
     }
+
+    @PatchMapping("/{pdid}")
+    public MessageResponseDto update(@PathVariable Long pdid,
+                                     @RequestBody ProductRequestDto productRequestDto,
+                                     @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        return productService.update(pdid, productRequestDto, userDetails.getUser());
+    }
+
+    @DeleteMapping("/{pdid}")
+    public MessageResponseDto delete(@PathVariable Long pdid,
+                                     @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        return productService.delete(pdid, userDetails.getUser());
+    }
 }
