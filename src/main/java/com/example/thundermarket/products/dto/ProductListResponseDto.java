@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 public class ProductListResponseDto {
 
+    private Long id;
     private String img;
     private String title;
     private int price;
@@ -13,6 +14,7 @@ public class ProductListResponseDto {
     private boolean thunderPay;
 
     public ProductListResponseDto(Product product) {
+        this.id = product.getId();
         this.img = product.getImg();
         this.title = product.getTitle();
         this.price = product.getPrice();
