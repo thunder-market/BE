@@ -6,6 +6,7 @@ import com.example.thundermarket.products.dto.ProductListResponseDto;
 import com.example.thundermarket.products.dto.ProductRequestDto;
 import com.example.thundermarket.products.service.ProductService;
 import com.example.thundermarket.security.UserDetailsImpl;
+import com.example.thundermarket.users.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,13 @@ public class ProductController {
     // 3. 상품 상세 조회
     @GetMapping("/{pdid}")
     public ProductDetailResponseDto getProductDetailList(
-            @PathVariable Long pdid) {
-        return productService.getProductDetailList(pdid);
+            @PathVariable Long pdid, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        User user = null;
+        if (userDetails != null){
+            user = userDetails.getUser();
+        }
+
+        return productService.getProductDetailList(pdid, user);
     }
 }
