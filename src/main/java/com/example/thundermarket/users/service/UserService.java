@@ -37,6 +37,14 @@ public class UserService {
         String password = encoder.encode(dto.getPassword());
         String nick = dto.getNick();
 
+//        이메일 닉네임 중복체크는 추후 프론트와 협의후 삭제 or 유지
+        boolean isEmailExist = userRepository.existsByEmail(dto.getEmail());
+        if (isEmailExist) throw new IllegalArgumentException("이미 가입된 이메일입니다.");
+
+        boolean isNickExist = userRepository.existsByNick(dto.getNick());
+        if (isNickExist) throw new IllegalArgumentException("이미 가입된 닉네임입니다.");
+
+
         UserRoleEnum role = UserRoleEnum.USER;
         if(dto.isAdmin()){
             if (!dto.getAdminToken().equals(ADMIN_TOKEN)){

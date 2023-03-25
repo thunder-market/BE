@@ -35,7 +35,8 @@ public class ProductService {
     @Transactional(readOnly = true)
     public List<ProductListResponseDto> getProductList() {
         List<ProductListResponseDto> productListResponseDtos = new ArrayList<>();
-        List<Product> products = productRepository.findAllIsDoneFalseByOrderByCreatedAtDesc();
+//        List<Product> products = productRepository.findAllByOrderByCreatedAtDesc();
+        List<Product> products = productRepository.findAllByIsDoneFalseOrderByCreatedAtDesc();
         for (Product product : products) {
             productListResponseDtos.add(new ProductListResponseDto(product));
         }
@@ -57,7 +58,8 @@ public class ProductService {
 
 //        최신 상품 리스트 6개 같이반환
         List<ProductListResponseDto> productListResponseDtos = productRepository
-                .findTop6ByIdNotAndIsDoneFalseOrderByCreatedAtDesc(pdid).stream()
+//                .findTop6ByIdNotOrderByCreatedAtDesc(pdid).stream()
+                .findLatestNotDoneProductsExceptGivenId(6,pdid).stream()
                 .map(ProductListResponseDto::new)
                 .collect(Collectors.toList());
 
@@ -69,16 +71,11 @@ public class ProductService {
         Product product = productRepository.findById(pdid).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
         );
-
         if (isMatchUser(product, user) || user.getRole() == UserRoleEnum.ADMIN) {
             product.update(productRequestDto);
-
             return new MessageResponseDto(HttpStatus.OK, "게시글이 수정 되었습니다.");
-
         } else {
-
             throw new IllegalArgumentException("해당 권한이 없습니다");
-
         }
     }
 
@@ -91,9 +88,7 @@ public class ProductService {
 
         if (isMatchUser(product, user) || user.getRole() == UserRoleEnum.ADMIN) {
             productRepository.deleteById(pdid);
-
             return new MessageResponseDto(HttpStatus.OK, "게시글이 삭제 되었습니다.");
-
         } else {
             throw new IllegalArgumentException("해당 권한이 없습니다");
         }
@@ -101,7 +96,6 @@ public class ProductService {
     }
 
     private boolean isMatchUser(Product product, User user) {
-
         return product.getUser().getEmail().equals(user.getEmail());
     }
 }

@@ -3,10 +3,25 @@ package com.example.thundermarket.products.repository;
 import com.example.thundermarket.products.entity.Product;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findAllIsDoneFalseByOrderByCreatedAtDesc();
-    List<Product> findTop6ByIdNotAndIsDoneFalseOrderByCreatedAtDesc(Long id);
+
+//    isDone이 false이고 createdAt을 기준으로 내림차순으로 정렬한 product를 모두 가져오는 쿼리를 직접 적용.
+    @Query(value = "SELECT * FROM product WHERE is_done = false ORDER BY created_at DESC", nativeQuery = true)
+    List<Product> findAllByIsDoneFalseOrderByCreatedAtDesc();
+
+//    isDone이 false이고 주어진 productid값이 아닌 product를 limit개수만큼 가져오는 쿼리를 직접 적용.
+    @Query(value = "SELECT * FROM product WHERE is_done = false AND id != :productId ORDER BY created_at DESC LIMIT :limit", nativeQuery = true)
+    List<Product> findLatestNotDoneProductsExceptGivenId(@Param("limit") int limit, @Param("productId") Long productId);
+
+    //    아래는 isDone 상관없이 간단하게 jpa 쓸때 코드
+//    List<Product> findAllByOrderByCreatedAtDesc();
+
+    //    아래는 isDone 상관없이 간단하게 jpa 쓸때 코드
+//    List<Product> findTop6ByIdNotOrderByCreatedAtDesc(Long id);
+
 }
