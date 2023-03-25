@@ -37,14 +37,7 @@ public class UserService {
         String password = encoder.encode(dto.getPassword());
         String nick = dto.getNick();
 
-//        Optional 로 받는걸 추후 수정?
-        Optional<User> found = userRepository.findByEmail(email);
-        if(found.isPresent()){
-            throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
-        }
-
         UserRoleEnum role = UserRoleEnum.USER;
-
         if(dto.isAdmin()){
             if (!dto.getAdminToken().equals(ADMIN_TOKEN)){
                 throw new IllegalArgumentException("관리자 암호가 틀립니다");
@@ -75,22 +68,26 @@ public class UserService {
         return new MessageResponseDto(HttpStatus.OK, "로그인이 완료되었습니다.");
     }
 
+//    이메일 중복 체크
     public MessageResponseDto signupEmailCheck(CheckEmailRequestDto dto) {
 
         Optional<User> user = userRepository.findByEmail(dto.getEmail());
         if(user.isPresent()){
-            return new MessageResponseDto(HttpStatus.OK, "중복된 이메일입니다.");
-        }else{
-            return new MessageResponseDto(HttpStatus.OK, "사용가능한 이메일입니다.");
+            return new MessageResponseDto(HttpStatus.BAD_REQUEST, "중복된 이메일입니다.");
         }
+
+        return new MessageResponseDto(HttpStatus.OK, "사용가능한 이메일입니다.");
+
     }
 
+//    닉네임 중복 체크
     public MessageResponseDto signupNickCheck(CheckNickRequestDto dto) {
         Optional<User> user = userRepository.findByNick(dto.getNick());
         if(user.isPresent()){
-            return new MessageResponseDto(HttpStatus.OK, "중복된 닉네임입니다.");
-        }else{
-            return new MessageResponseDto(HttpStatus.OK, "사용가능한 닉네임입니다.");
+            return new MessageResponseDto(HttpStatus.BAD_REQUEST, "중복된 닉네임입니다.");
         }
+
+        return new MessageResponseDto(HttpStatus.OK, "사용가능한 닉네임입니다.");
+
     }
 }

@@ -25,8 +25,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // request의 header에서 토큰을 가져옴
         String token = jwtUtil.resolveToken(request);
-        // token 유효성 검사 token null 일때?
-        if (token != null) {
+        // token 유효성 검사 토큰이 비어있거나 "Bearer undefined"면 인증객체 만들지 않고 통과
+        if (token != null && !token.equals("undefined")) {
             if (!jwtUtil.validateToken(token)){
                 throw new JwtException("토큰이 유효하지 않습니다.");
             }
@@ -39,9 +39,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 
     //    SecurityContextHolder안에 인증객체 넣음
-    public void setAuthentication(String username) {
+    public void setAuthentication(String email) {
         SecurityContext context = SecurityContextHolder.createEmptyContext();
-        Authentication authentication = jwtUtil.createAuthentication(username);
+        Authentication authentication = jwtUtil.createAuthentication(email);
         context.setAuthentication(authentication);
         SecurityContextHolder.setContext(context);
     }
