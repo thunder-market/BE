@@ -22,8 +22,9 @@ public class ProductDetailResponseDto {
     private boolean thunderPay;
     private int quantity;
     private List<ProductListResponseDto> productList = new ArrayList<>();
+    private boolean isAuth = false;
 
-    public ProductDetailResponseDto(Product getproduct, List<ProductListResponseDto> productListResponseDtos) {
+    public ProductDetailResponseDto(Product getproduct, List<ProductListResponseDto> productListResponseDtos, boolean isAuth) {
         this.id = getproduct.getId();
         this.img = getproduct.getImg();
         this.title = getproduct.getTitle();
@@ -36,8 +37,8 @@ public class ProductDetailResponseDto {
         this.isDone = getproduct.isDone();
         this.thunderPay = getproduct.isThunderPay();
         this.quantity = getproduct.getQuantity();
-        for (int i = 0; i < 6; i++) {
-            productList.add(productListResponseDtos.get(i));
-        }
+        this.productList = productListResponseDtos;
+        this.isAuth = isAuth;
+
     }
 }

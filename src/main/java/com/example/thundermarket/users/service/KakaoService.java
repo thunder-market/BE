@@ -42,7 +42,7 @@ public class KakaoService {
         User kakaoUser = registerKakaoUserIfNeeded(kakaoUserInfo);
 
         // 4. JWT 토큰 반환
-        String createToken =  jwtUtil.createToken(kakaoUser.getUsername(), kakaoUser.getRole());
+        String createToken =  jwtUtil.createToken(kakaoUser.getEmail(), kakaoUser.getRole());
 //        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken);
 
         return createToken;
@@ -56,8 +56,8 @@ public class KakaoService {
         // HTTP Body 생성
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
-        body.add("client_id", "본인의 REST API키");
-        body.add("redirect_uri", "http://localhost:8080/kakao/callback");
+        body.add("client_id", "8556f063804f3a560b2aa9a26c924279");
+        body.add("redirect_uri", "http://3.35.117.161/kakao/callback");
         body.add("code", code);
 
         // HTTP 요청 보내기
@@ -128,8 +128,9 @@ public class KakaoService {
 
                 // email: kakao email
                 String email = kakaoUserInfo.getEmail();
+                String nick = kakaoUserInfo.getNick() +"_"+ kakaoUserInfo.getId();
 
-                kakaoUser = new User(kakaoUserInfo.getNick(), kakaoId, encodedPassword, email, UserRoleEnum.USER);
+                kakaoUser = new User(kakaoId,nick, encodedPassword, email, UserRoleEnum.USER);
             }
 
             userRepository.save(kakaoUser);
