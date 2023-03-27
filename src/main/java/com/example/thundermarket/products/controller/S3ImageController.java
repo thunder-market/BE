@@ -22,6 +22,8 @@ import java.util.List;
 public class S3ImageController {
 
     private final S3ImageService s3ImageService;
+    private static final long MAX_FILE_SIZE = 1 * 1024 * 1024; // 5MB
+    private static final List<String> ALLOWED_IMAGE_CONTENT_TYPES = List.of("image/jpeg", "image/png", "image/gif");
 
     @Autowired
     public S3ImageController(S3ImageService s3ImageService) {
@@ -32,6 +34,7 @@ public class S3ImageController {
     @PostMapping("/upload-image")
     public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image) {
         try {
+            validateImage(image);
             String key = s3ImageService.uploadImage(image);
             return ResponseEntity.ok(key);
         } catch (IOException e) {
@@ -46,6 +49,7 @@ public class S3ImageController {
         List<String> keys = new ArrayList<>();
         for (MultipartFile image : images) {
             try {
+                validateImage(image);
                 String key = s3ImageService.uploadImage(image);
                 keys.add(key);
             } catch (IOException e) {
@@ -74,6 +78,16 @@ public class S3ImageController {
                     .body(new InputStreamResource(s3Object));
         } catch (S3Exception e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    private void validateImage(MultipartFile image) {
+        if (image.getSize() > MAX_FILE_SIZE) {
+            throw new IllegalStateException("File size exceeds the maximum allowed size (5MB).");
+        }
+
+        if (!ALLOWED_IMAGE_CONTENT_TYPES.contains(image.getContentType())) {
+            throw new IllegalStateException("Invalid file format. Allowed formats: JPEG, PNG, GIF.");
         }
     }
 
