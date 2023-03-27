@@ -1,1 +1,78 @@
 WARN  23-03-27 08:53:54[HikariPool-1 housekeeper] [HikariPool:788] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h27m7s877ms205µs900ns).
+INFO  23-03-27 10:25:55[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:651] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  23-03-27 10:25:55[SpringApplicationShutdownHook] [SchemaDropperImpl$DelayedDropActionImpl:538] - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+WARN  23-03-27 10:25:56[SpringApplicationShutdownHook] [DisposableBeanAdapter:222] - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+INFO  23-03-27 10:25:56[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  23-03-27 10:25:56[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  23-03-27 10:26:12[background-preinit] [Version:21] - HV000001: Hibernate Validator 6.2.5.Final
+INFO  23-03-27 10:26:12[restartedMain] [ThunderMarketApplication:55] - Starting ThunderMarketApplication using Java 17.0.6 on note2 with PID 17148 (C:\Users\parkm\Downloads\mj_Thunder_Marcket\build\classes\java\main started by parkm in C:\Users\parkm\Downloads\mj_Thunder_Marcket)
+INFO  23-03-27 10:26:12[restartedMain] [ThunderMarketApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  23-03-27 10:26:12[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-03-27 10:26:12[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-03-27 10:26:13[restartedMain] [RepositoryConfigurationDelegate:132] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  23-03-27 10:26:13[restartedMain] [RepositoryConfigurationDelegate:201] - Finished Spring Data repository scanning in 82 ms. Found 3 JPA repository interfaces.
+INFO  23-03-27 10:26:14[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-03-27 10:26:14[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-03-27 10:26:14[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  23-03-27 10:26:14[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+INFO  23-03-27 10:26:14[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-03-27 10:26:14[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 2126 ms
+INFO  23-03-27 10:26:14[restartedMain] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-03-27 10:26:14[restartedMain] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  23-03-27 10:26:14[restartedMain] [H2ConsoleAutoConfiguration:98] - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:db'
+INFO  23-03-27 10:26:14[restartedMain] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  23-03-27 10:26:14[restartedMain] [Version:44] - HHH000412: Hibernate ORM core version 5.6.12.Final
+INFO  23-03-27 10:26:15[restartedMain] [Version:56] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+INFO  23-03-27 10:26:15[restartedMain] [Dialect:175] - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+INFO  23-03-27 10:26:16[restartedMain] [SchemaCreatorImpl:33] - HHH000476: Executing import script 'file:/C:/Users/parkm/Downloads/mj_Thunder_Marcket/build/resources/main/import.sql'
+INFO  23-03-27 10:26:16[restartedMain] [JtaPlatformInitiator:52] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+INFO  23-03-27 10:26:16[restartedMain] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  23-03-27 10:26:16[restartedMain] [AnnotationConfigServletWebServerApplicationContext:591] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 's3Config': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'cloud.aws.region.static' in value "${cloud.aws.region.static}"
+INFO  23-03-27 10:26:16[restartedMain] [LocalContainerEntityManagerFactoryBean:651] - Closing JPA EntityManagerFactory for persistence unit 'default'
+INFO  23-03-27 10:26:16[restartedMain] [SchemaDropperImpl$DelayedDropActionImpl:538] - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+WARN  23-03-27 10:26:16[restartedMain] [DisposableBeanAdapter:222] - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+INFO  23-03-27 10:26:16[restartedMain] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  23-03-27 10:26:16[restartedMain] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  23-03-27 10:26:16[restartedMain] [StandardService:173] - Stopping service [Tomcat]
+INFO  23-03-27 10:26:16[restartedMain] [ConditionEvaluationReportLoggingListener:136] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+ERROR 23-03-27 10:26:16[restartedMain] [SpringApplication:824] - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 's3Config': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'cloud.aws.region.static' in value "${cloud.aws.region.static}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.example.thundermarket.ThunderMarketApplication.main(ThunderMarketApplication.java:12)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'cloud.aws.region.static' in value "${cloud.aws.region.static}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1332)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 22 common frames omitted
