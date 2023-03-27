@@ -1,5 +1,6 @@
 package com.example.thundermarket.products.controller;
 
+import com.example.thundermarket.products.dto.ImageResponseDto;
 import com.example.thundermarket.products.service.S3ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -18,11 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/s3")
+@RequestMapping("/image")
 public class S3ImageController {
 
     private final S3ImageService s3ImageService;
-    private static final long MAX_FILE_SIZE = 1 * 1024 * 1024; // 5MB
+    private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
     private static final List<String> ALLOWED_IMAGE_CONTENT_TYPES = List.of("image/jpeg", "image/png", "image/gif");
 
     @Autowired
@@ -31,12 +32,12 @@ public class S3ImageController {
     }
 
     // 객체 1개 업로드
-    @PostMapping("/upload-image")
-    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image) {
+    @PostMapping("/upload")
+    public ResponseEntity<ImageResponseDto> uploadImage(@RequestParam("image") MultipartFile image) {
         try {
             validateImage(image);
             String key = s3ImageService.uploadImage(image);
-            return ResponseEntity.ok(key);
+            return ResponseEntity.ok().body(new ImageResponseDto(key));
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -44,7 +45,7 @@ public class S3ImageController {
     }
 
     // 객체 여러개 업로드
-    @PostMapping("/upload-images")
+    @PostMapping("/uploads")
     public ResponseEntity<List<String>> uploadImages(@RequestParam("image") List<MultipartFile> images) {
         List<String> keys = new ArrayList<>();
         for (MultipartFile image : images) {
@@ -61,14 +62,14 @@ public class S3ImageController {
     }
 
     // 객체 삭제
-    @DeleteMapping("/delete-image/{key}")
+    @DeleteMapping("/delete/{key}")
     public ResponseEntity<Void> deleteImage(@PathVariable String key) {
         s3ImageService.deleteImage(key);
         return ResponseEntity.noContent().build();
     }
 
     // 객체 다운로드
-    @GetMapping("/download-image/{key}")
+    @GetMapping("/download/{key}")
     public ResponseEntity<InputStreamResource> downloadImage(@PathVariable String key) {
         try {
             ResponseInputStream<GetObjectResponse> s3Object = s3ImageService.downloadImage(key);
