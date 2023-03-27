@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PROJECT_ROOT="/home/ubuntu/app"
-JAR_FILE="$PROJECT_ROOT/thunder-market.jar"
+JAR_FILE="$PROJECT_ROOT/thundermarket.jar"
 
 DEPLOY_LOG="$PROJECT_ROOT/deploy.log"
 
