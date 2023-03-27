@@ -10,6 +10,7 @@ import com.example.thundermarket.users.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -62,4 +63,5 @@ public class ProductController {
 
         return productService.delete(pdid, userDetails.getUser());
     }
+
 }
