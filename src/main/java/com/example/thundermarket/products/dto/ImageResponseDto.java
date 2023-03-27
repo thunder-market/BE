@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public class ImageResponseDto {
 
-    private String imageid;
+    private String imageId;
 
     public ImageResponseDto(String key) {
-        this.imageid = key;
+        this.imageId = key;
     }
 }
