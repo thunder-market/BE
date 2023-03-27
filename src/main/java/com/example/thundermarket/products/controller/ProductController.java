@@ -23,7 +23,7 @@ public class ProductController {
     private final ProductService productService;
 
     // 1. 상품 작성
-    @PostMapping("")
+    @PostMapping
     public MessageResponseDto createProduct(
             @RequestBody @Valid ProductRequestDto productRequestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     // 2. 상품 전체 조회
-    @GetMapping("")
+    @GetMapping
     public List<ProductListResponseDto> getProductList() {
         return productService.getProductList();
     }
@@ -62,6 +62,12 @@ public class ProductController {
                                      @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         return productService.delete(pdid, userDetails.getUser());
+    }
+
+    @PostMapping("/{pdid}/dibs")
+    public MessageResponseDto dibs(@PathVariable Long pdid,
+                                   @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return productService.dibs(pdid, userDetails.getUser());
     }
 
 }

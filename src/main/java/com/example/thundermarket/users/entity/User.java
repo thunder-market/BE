@@ -1,9 +1,12 @@
 package com.example.thundermarket.users.entity;
 
+import com.example.thundermarket.products.entity.ProductDibs;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -32,6 +35,10 @@ public class User {
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
+
+    @OneToMany
+    @JoinColumn(name = "userId")
+    List<ProductDibs> productDibsList = new ArrayList<>();
 
     public User(String email,String password,String nick, UserRoleEnum role) {
         this.email = email;
