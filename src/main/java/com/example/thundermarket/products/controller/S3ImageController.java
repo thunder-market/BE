@@ -23,7 +23,7 @@ import java.util.List;
 public class S3ImageController {
 
     private final S3ImageService s3ImageService;
-    private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+    private static final long MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
     private static final List<String> ALLOWED_IMAGE_CONTENT_TYPES = List.of("image/jpeg", "image/png", "image/gif");
 
     @Autowired
