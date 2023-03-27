@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/image")
+@RequestMapping("/products")
 public class S3ImageController {
 
     private final S3ImageService s3ImageService;
@@ -32,7 +32,7 @@ public class S3ImageController {
     }
 
     // 객체 1개 업로드
-    @PostMapping("/upload")
+    @PostMapping("/image")
     public ResponseEntity<ImageResponseDto> uploadImage(@RequestParam("image") MultipartFile image) {
         try {
             validateImage(image);
