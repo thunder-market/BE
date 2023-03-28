@@ -19,7 +19,7 @@ public class ProductListResponseDto {
     private boolean isDone;
     private boolean thunderPay;
     private String timeInterval;
-    private String wonPrice;
+//    private String wonPrice;
 
     public ProductListResponseDto(Product product) {
         this.id = product.getId();
@@ -29,6 +29,6 @@ public class ProductListResponseDto {
         this.isDone = product.isDone();
         this.thunderPay = product.isThunderPay();
         this.timeInterval = TimeInteval.Calculate(product.getCreatedAt());
-        this.wonPrice = KorPrice.format(product.getPrice());
+//        this.wonPrice = KorPrice.format(product.getPrice());
     }
 }

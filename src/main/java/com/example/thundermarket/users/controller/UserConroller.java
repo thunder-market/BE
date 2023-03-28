@@ -2,10 +2,7 @@ package com.example.thundermarket.users.controller;
 
 import com.example.thundermarket.jwt.JwtUtil;
 import com.example.thundermarket.products.dto.MessageResponseDto;
-import com.example.thundermarket.users.dto.CheckEmailRequestDto;
-import com.example.thundermarket.users.dto.CheckNickRequestDto;
-import com.example.thundermarket.users.dto.LoginRequestDto;
-import com.example.thundermarket.users.dto.SignupRequestDto;
+import com.example.thundermarket.users.dto.*;
 import com.example.thundermarket.users.service.KakaoService;
 import com.example.thundermarket.users.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -43,7 +40,7 @@ public class UserConroller {
 
 //    2. 로그인
     @PostMapping("/login")
-    public MessageResponseDto login(@Valid @RequestBody LoginRequestDto dto, HttpServletResponse response){
+    public LoginResponseDto login(@Valid @RequestBody LoginRequestDto dto, HttpServletResponse response){
         return userService.login(dto, response);
     }
 

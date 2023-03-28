@@ -27,7 +27,7 @@ public class ProductDetailResponseDto {
     private boolean isAuth = false;
     private String timeInterval;
 
-    private  String wonPrice;
+//    private  String wonPrice;
     private String nick;
 
     public ProductDetailResponseDto(Product getproduct, List<ProductListResponseDto> productListResponseDtos, boolean isAuth) {
@@ -47,6 +47,6 @@ public class ProductDetailResponseDto {
         this.productList = productListResponseDtos;
         this.isAuth = isAuth;
         this.timeInterval = TimeInteval.Calculate(getproduct.getCreatedAt());
-        this.wonPrice = KorPrice.format(getproduct.getPrice());
+//        this.wonPrice = KorPrice.format(getproduct.getPrice());
     }
 }
