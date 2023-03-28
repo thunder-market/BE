@@ -3,6 +3,12 @@ INSERT INTO USERS VALUES (2, 'user2@example.com', null, 'user2', 'password2@#$',
 INSERT INTO USERS VALUES (3, 'user3@example.com', null, 'user3', 'password3@#$', 'USER');
 INSERT INTO USERS VALUES (4, 'user4@example.com', null, 'user4', 'password4@#$', 'USER');
 INSERT INTO USERS VALUES (5, 'user5@example.com', null, 'user5', 'password5@#$', 'USER');
+INSERT INTO USERS VALUES (6, 'admin1@example.com', null, 'admin1', '$2a$10$4v4ETGTnjZjDw674aiSmxuRAJHhaERZzp6At8ER8yk6svHttlAjoK', 'ADMIN');
+INSERT INTO USERS VALUES (7, 'testuser1@example.com', null, 'testuser1', '$2a$10$rv88wx/1N8VVrjmE/uUA8e2lTVzxjHthiBuXpiQAmzeKO08P99pTy', 'USER');
+INSERT INTO USERS VALUES (8, 'testuser2@example.com', null, 'testuser2', '$2a$10$rv88wx/1N8VVrjmE/uUA8e2lTVzxjHthiBuXpiQAmzeKO08P99pTy', 'USER');
+INSERT INTO USERS VALUES (9, 'testuser3@example.com', null, 'testuser3', '$2a$10$rv88wx/1N8VVrjmE/uUA8e2lTVzxjHthiBuXpiQAmzeKO08P99pTy', 'USER');
+
+
 
 INSERT INTO CATEGORY VALUES(1, 100, '여성의류');
 INSERT INTO CATEGORY VALUES(2, 200, '남성의류');

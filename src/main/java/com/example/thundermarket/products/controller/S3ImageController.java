@@ -21,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class S3ImageController {
+//    현재 쓰이지 않는 컨트롤러. 추후 주석처리나 삭제
 
     private final S3ImageService s3ImageService;
     private static final long MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
