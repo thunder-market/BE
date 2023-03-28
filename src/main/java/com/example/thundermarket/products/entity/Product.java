@@ -81,8 +81,7 @@ public class Product extends Timestamped {
         this.cateCode = productRequestDto.getCateCode();
     }
 
-    public void modifyDone() {
-        this.isDone = true;
+    public void setDone(boolean done) {
+        isDone = done;
     }
-
 }

@@ -140,8 +140,14 @@ public class ProductService {
         Product product = productRepository.findById(pdid).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
         );
+//        해당 상품이 판매중일때만
         if (!product.isDone()){
-            product.modifyDone();
+//            자신이 올린 상품이면 예외처리
+            if (product.getUser().getId().equals(user.getId())){
+                throw new IllegalArgumentException("자신이 올린 상품은 구매하실 수 없습니다.");
+            }
+            product.setDone(true);
+            productRepository.save(product);
             return new MessageResponseDto(HttpStatus.OK, "상품을 정상적으로 구매하셨습니다.");
         }
         throw new IllegalArgumentException("이미 판매 완료된 상품입니다.");
