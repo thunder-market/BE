@@ -72,7 +72,14 @@ public class ProductController {
         return productService.delete(pdid, userDetails.getUser());
     }
 
+    //   6. 상품 구매 완료.
+    @PatchMapping("/{pdid}/done")
+    public MessageResponseDto modifyDone(@PathVariable("pdid") Long pdid, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return productService.modifyDone(pdid, userDetails.getUser());
+    }
 
+
+//    페이지 조회
     @GetMapping("/pages")
     public List<ProductListResponseDto> getPagingProducts(ReqProductPageableDto dto, HttpServletResponse resp) {
 
@@ -82,12 +89,8 @@ public class ProductController {
 
         return productService.getPageOfProduct(dto);
 
-//   6. 상품 구매 완료.
-    @PatchMapping("/{pdid}/done")
-    public MessageResponseDto modifyDone(@PathVariable("pdid") Long pdid,
-                                         @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return productService.modifyDone(pdid, userDetails.getUser());
     }
+
 
 
 //    이미지 유효성 검사

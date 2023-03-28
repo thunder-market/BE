@@ -31,7 +31,6 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
     private final S3Client s3Client;
     private final String bucketName;
 
@@ -137,6 +136,7 @@ public class ProductService {
     }
 
 //    구매 완료 메서드
+    @Transactional
     public MessageResponseDto modifyDone(Long pdid, User user) {
         Product product = productRepository.findById(pdid).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
@@ -168,6 +168,7 @@ public class ProductService {
         return productRepository.countProducts();
     }
 
+    @Transactional(readOnly = true)
     public List<ProductListResponseDto> getPageOfProduct(ReqProductPageableDto dto) {
         Page<Product> products = productRepository.findAll(configPageAble(dto));
         List<ProductListResponseDto> list = new ArrayList<>();
