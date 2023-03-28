@@ -27,6 +27,7 @@ public class WebSecurityConfig {
 
     private final JwtUtil jwtUtil;
 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
