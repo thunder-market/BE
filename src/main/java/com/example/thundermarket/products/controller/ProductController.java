@@ -1,9 +1,6 @@
 package com.example.thundermarket.products.controller;
 
-import com.example.thundermarket.products.dto.MessageResponseDto;
-import com.example.thundermarket.products.dto.ProductDetailResponseDto;
-import com.example.thundermarket.products.dto.ProductListResponseDto;
-import com.example.thundermarket.products.dto.ProductRequestDto;
+import com.example.thundermarket.products.dto.*;
 import com.example.thundermarket.products.service.ProductService;
 import com.example.thundermarket.security.UserDetailsImpl;
 import com.example.thundermarket.users.entity.User;
@@ -12,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -64,4 +62,13 @@ public class ProductController {
         return productService.delete(pdid, userDetails.getUser());
     }
 
+    @GetMapping("/pages")
+    public List<ProductListResponseDto> getPagingProducts(ReqProductPageableDto dto, HttpServletResponse resp) {
+
+        Long count = productService.getCountAllProducts();
+
+        resp.addHeader("Total_Count_Posts", String.valueOf(count));
+
+        return productService.getPageOfProduct(dto);
+    }
 }
