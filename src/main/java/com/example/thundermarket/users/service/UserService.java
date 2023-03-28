@@ -2,10 +2,7 @@ package com.example.thundermarket.users.service;
 
 import com.example.thundermarket.jwt.JwtUtil;
 import com.example.thundermarket.products.dto.MessageResponseDto;
-import com.example.thundermarket.users.dto.CheckEmailRequestDto;
-import com.example.thundermarket.users.dto.CheckNickRequestDto;
-import com.example.thundermarket.users.dto.LoginRequestDto;
-import com.example.thundermarket.users.dto.SignupRequestDto;
+import com.example.thundermarket.users.dto.*;
 import com.example.thundermarket.users.entity.User;
 import com.example.thundermarket.users.repository.UserRepository;
 import com.example.thundermarket.users.entity.UserRoleEnum;
@@ -60,7 +57,7 @@ public class UserService {
 
 //    로그인
     @Transactional
-    public MessageResponseDto login(LoginRequestDto dto, HttpServletResponse response){
+    public LoginResponseDto login(LoginRequestDto dto, HttpServletResponse response){
         String email = dto.getEmail();
 
         User user = userRepository.findByEmail(email).orElseThrow(
@@ -73,7 +70,7 @@ public class UserService {
             throw new IllegalArgumentException("비밀번호가 맞지 않습니다.");
         }
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getEmail(), user.getRole()));
-        return new MessageResponseDto(HttpStatus.OK, "로그인이 완료되었습니다.");
+        return new LoginResponseDto(user.getNick());
     }
 
 //    이메일 중복 체크. 이메일이 있으면 true - 중복된 이메일 반환 / 이메일이 없으면 false 사용가능한 이메일
