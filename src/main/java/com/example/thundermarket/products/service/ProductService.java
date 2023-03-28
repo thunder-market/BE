@@ -135,7 +135,25 @@ public class ProductService {
         throw new IllegalArgumentException("해당 권한이 없습니다");
     }
 
+//    구매 완료 메서드
+    public MessageResponseDto modifyDone(Long pdid, User user) {
+        Product product = productRepository.findById(pdid).orElseThrow(
+                () -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
+        );
+        if (!product.isDone()){
+            product.modifyDone();
+            return new MessageResponseDto(HttpStatus.OK, "상품을 정상적으로 구매하셨습니다.");
+        }
+        throw new IllegalArgumentException("이미 판매 완료된 상품입니다.");
+
+
+    }
+
+//    유저 검증 메서드
     private boolean isMatchUser(Product product, User user) {
         return product.getUser().getEmail().equals(user.getEmail());
     }
+
+
+
 }

@@ -32,7 +32,7 @@ public class ProductRequestDto {
     @Size(min = 10, max = 2000) // 추후 크기 조정
     @NotBlank(message = "내용을 입력하세요.")
     private String desc;
-
+    
     private boolean isDone;
 
     @NotBlank(message = "수량을 입력하세요.")

@@ -57,7 +57,7 @@ public class ProductController {
         return productService.getProductDetailList(pdid, user);
     }
 
-//    상품 수정
+//   4. 상품 수정
     @PostMapping(value = "/{pdid}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public MessageResponseDto update(@PathVariable("pdid") Long pdid,
                                      @RequestParam("image") MultipartFile image,
@@ -67,11 +67,18 @@ public class ProductController {
         return productService.update(pdid, productRequestDto, userDetails.getUser(), image);
     }
 
-//    상품 삭제
+//    5. 상품 삭제
     @DeleteMapping("/{pdid}")
     public MessageResponseDto delete(@PathVariable Long pdid,
                                      @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return productService.delete(pdid, userDetails.getUser());
+    }
+
+//   6. 상품 구매 완료.
+    @PatchMapping("/{pdid}/done")
+    public MessageResponseDto modifyDone(@PathVariable("pdid") Long pdid,
+                                         @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return productService.modifyDone(pdid, userDetails.getUser());
     }
 
 
