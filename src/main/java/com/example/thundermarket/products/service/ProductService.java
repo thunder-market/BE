@@ -6,7 +6,6 @@ import com.example.thundermarket.products.dto.ProductListResponseDto;
 import com.example.thundermarket.products.dto.ProductRequestDto;
 import com.example.thundermarket.products.entity.Product;
 import com.example.thundermarket.products.entity.ProductDibs;
-import com.example.thundermarket.products.repository.CategoryRepository;
 import com.example.thundermarket.products.repository.ProductDibsRepository;
 import com.example.thundermarket.products.repository.ProductRepository;
 import com.example.thundermarket.users.entity.User;
