@@ -1,15 +1,16 @@
 package com.example.thundermarket.products.service;
 
-import com.example.thundermarket.products.dto.MessageResponseDto;
-import com.example.thundermarket.products.dto.ProductDetailResponseDto;
-import com.example.thundermarket.products.dto.ProductListResponseDto;
-import com.example.thundermarket.products.dto.ProductRequestDto;
+import com.example.thundermarket.products.dto.*;
 import com.example.thundermarket.products.entity.Product;
 import com.example.thundermarket.products.repository.CategoryRepository;
 import com.example.thundermarket.products.repository.ProductRepository;
 import com.example.thundermarket.users.entity.User;
 import com.example.thundermarket.users.entity.UserRoleEnum;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -161,5 +162,29 @@ public class ProductService {
     }
 
 
+    @Transactional(readOnly = true)
+    public Long getCountAllProducts(){
+
+        return productRepository.countProducts();
+    }
+
+    public List<ProductListResponseDto> getPageOfProduct(ReqProductPageableDto dto) {
+        Page<Product> products = productRepository.findAll(configPageAble(dto));
+        List<ProductListResponseDto> list = new ArrayList<>();
+        for(Product product : products){
+            if(product.isDone() == false){
+                list.add(new ProductListResponseDto(product));
+            }
+        }
+        return list;
+    }
+
+    private Pageable configPageAble(ReqProductPageableDto dto){
+
+        Sort.Direction direction = dto.isAsc()? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction,dto.getSortBy());
+
+        return PageRequest.of(dto.getPage()-1,dto.getSize(),sort);
+    }
 
 }
