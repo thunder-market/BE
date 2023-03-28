@@ -87,7 +87,7 @@ public class ProductService {
         return new ProductDetailResponseDto(getproduct, productListResponseDtos, isAuth);
     }
 
-//    상품 수정
+    //    상품 수정
     @Transactional
     public MessageResponseDto update(Long pdid, ProductRequestDto productRequestDto, User user, MultipartFile image) throws IOException {
         Product product = productRepository.findById(pdid).orElseThrow(
@@ -117,7 +117,22 @@ public class ProductService {
 
     }
 
-//    상품 삭제
+    // 상품 사진제외하고 수정
+    @Transactional
+    public MessageResponseDto textUpdate(Long pdid, ProductRequestDto productRequestDto, User user) {
+        Product product = productRepository.findById(pdid).orElseThrow(
+                () -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
+        );
+
+        if (isMatchUser(product, user) || user.getRole() == UserRoleEnum.ADMIN) {
+            product.textUpdate(productRequestDto);
+            return new MessageResponseDto(HttpStatus.OK, "게시글이 수정 되었습니다.");
+        }
+        throw new IllegalArgumentException("해당 권한이 없습니다");
+    }
+
+
+    //    상품 삭제
     @Transactional
     public MessageResponseDto delete(Long pdid, User user) {
 
@@ -135,16 +150,16 @@ public class ProductService {
         throw new IllegalArgumentException("해당 권한이 없습니다");
     }
 
-//    구매 완료 메서드
+    //    구매 완료 메서드
     @Transactional
     public MessageResponseDto modifyDone(Long pdid, User user) {
         Product product = productRepository.findById(pdid).orElseThrow(
                 () -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
         );
 //        해당 상품이 판매중일때만
-        if (!product.isDone()){
+        if (!product.isDone()) {
 //            자신이 올린 상품이면 예외처리
-            if (product.getUser().getId().equals(user.getId())){
+            if (product.getUser().getId().equals(user.getId())) {
                 throw new IllegalArgumentException("자신이 올린 상품은 구매하실 수 없습니다.");
             }
             product.setDone(true);
@@ -156,14 +171,14 @@ public class ProductService {
 
     }
 
-//    유저 검증 메서드
+    //    유저 검증 메서드
     private boolean isMatchUser(Product product, User user) {
         return product.getUser().getEmail().equals(user.getEmail());
     }
 
 
     @Transactional(readOnly = true)
-    public Long getCountAllProducts(){
+    public Long getCountAllProducts() {
 
         return productRepository.countProducts();
     }
@@ -172,20 +187,21 @@ public class ProductService {
     public List<ProductListResponseDto> getPageOfProduct(ReqProductPageableDto dto) {
         Page<Product> products = productRepository.findAll(configPageAble(dto));
         List<ProductListResponseDto> list = new ArrayList<>();
-        for(Product product : products){
-            if(product.isDone() == false){
+        for (Product product : products) {
+            if (product.isDone() == false) {
                 list.add(new ProductListResponseDto(product));
             }
         }
         return list;
     }
 
-    private Pageable configPageAble(ReqProductPageableDto dto){
+    private Pageable configPageAble(ReqProductPageableDto dto) {
 
-        Sort.Direction direction = dto.isAsc()? Sort.Direction.ASC : Sort.Direction.DESC;
-        Sort sort = Sort.by(direction,dto.getSortBy());
+        Sort.Direction direction = dto.isAsc() ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, dto.getSortBy());
 
-        return PageRequest.of(dto.getPage()-1,dto.getSize(),sort);
+        return PageRequest.of(dto.getPage() - 1, dto.getSize(), sort);
     }
+
 
 }

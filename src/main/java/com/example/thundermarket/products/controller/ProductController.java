@@ -61,6 +61,9 @@ public class ProductController {
                                      @RequestParam("image") MultipartFile image,
                                      @RequestPart("dto") @Valid ProductRequestDto productRequestDto,
                                      @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+        if (image.isEmpty()) {;
+            return productService.textUpdate(pdid, productRequestDto, userDetails.getUser());
+        }
         validateImage(image);
         return productService.update(pdid, productRequestDto, userDetails.getUser(), image);
     }
