@@ -52,8 +52,8 @@ public class Product extends Timestamped {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Product(ProductRequestDto productRequestDto, User user) {
-        this.img = productRequestDto.getImg();
+    public Product(ProductRequestDto productRequestDto, User user, String key) {
+        this.img = key;
         this.title = productRequestDto.getTitle();
         this.used = productRequestDto.isUsed();
         this.exchange = productRequestDto.isExchange();
@@ -67,8 +67,8 @@ public class Product extends Timestamped {
         this.cateCode = productRequestDto.getCateCode();
     }
 
-    public void update(ProductRequestDto productRequestDto) {
-        this.img = productRequestDto.getImg();
+    public void update(ProductRequestDto productRequestDto, String key) {
+        this.img = key;
         this.title = productRequestDto.getTitle();
         this.used = productRequestDto.isUsed();
         this.exchange = productRequestDto.isExchange();
@@ -79,5 +79,9 @@ public class Product extends Timestamped {
         this.thunderPay = productRequestDto.isThunderPay();
         this.isDone = productRequestDto.isDone();
         this.cateCode = productRequestDto.getCateCode();
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }

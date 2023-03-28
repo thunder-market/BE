@@ -15,6 +15,7 @@ import java.util.UUID;
 
 @Service
 public class S3ImageService {
+//    현재 쓰이지 않는 서비스. 추후 주석처리나 삭제
 
     private final S3Client s3Client;
     private final String bucketName;
