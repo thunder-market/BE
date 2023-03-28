@@ -2,7 +2,6 @@ package com.example.thundermarket.products.controller;
 
 import com.example.thundermarket.products.dto.*;
 import com.example.thundermarket.products.service.ProductService;
-import com.example.thundermarket.products.service.S3ImageService;
 import com.example.thundermarket.security.UserDetailsImpl;
 import com.example.thundermarket.users.entity.User;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +60,9 @@ public class ProductController {
                                      @RequestParam("image") MultipartFile image,
                                      @RequestPart("dto") @Valid ProductRequestDto productRequestDto,
                                      @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+        if (image.isEmpty()) {;
+            return productService.textUpdate(pdid, productRequestDto, userDetails.getUser());
+        }
         validateImage(image);
         return productService.update(pdid, productRequestDto, userDetails.getUser(), image);
     }
@@ -95,6 +97,10 @@ public class ProductController {
 
 //    이미지 유효성 검사
     private void validateImage(MultipartFile image) {
+        if (image.isEmpty()) {
+            throw new IllegalStateException("상품의 이미지를 업로드해주세요.");
+        }
+
         if (image.getSize() > MAX_FILE_SIZE) {
             throw new IllegalStateException("파일 사이즈가 최대 사이즈(5MB)를 초과합니다.");
         }
