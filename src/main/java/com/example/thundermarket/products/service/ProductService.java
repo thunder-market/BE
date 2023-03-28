@@ -37,7 +37,7 @@ public class ProductService {
     //    상품 작성
     @Transactional
     public MessageResponseDto createProduct(ProductRequestDto productRequestDto, User user, MultipartFile image) throws IOException {
-        String key = UUID.randomUUID().toString(); // 또는 다른 고유한 키 생성 방법
+        String key = UUID.randomUUID().toString() + "_" + image.getOriginalFilename(); // 또는 다른 고유한 키 생성 방법
 
         PutObjectRequest request = PutObjectRequest.builder()
                 .bucket(bucketName)
