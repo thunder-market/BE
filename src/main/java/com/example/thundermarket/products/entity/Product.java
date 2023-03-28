@@ -81,7 +81,21 @@ public class Product extends Timestamped {
         this.cateCode = productRequestDto.getCateCode();
     }
 
+    public void textUpdate(ProductRequestDto productRequestDto) {
+        this.title = productRequestDto.getTitle();
+        this.used = productRequestDto.isUsed();
+        this.exchange = productRequestDto.isExchange();
+        this.price = productRequestDto.getPrice();
+        this.deliveryFee = productRequestDto.isDeliveryFee();
+        this.desc = productRequestDto.getDesc();
+        this.quantity = productRequestDto.getQuantity();
+        this.thunderPay = productRequestDto.isThunderPay();
+        this.isDone = productRequestDto.isDone();
+        this.cateCode = productRequestDto.getCateCode();
+    }
+
     public void setDone(boolean done) {
         isDone = done;
     }
+
 }
