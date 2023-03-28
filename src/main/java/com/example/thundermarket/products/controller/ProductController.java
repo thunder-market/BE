@@ -88,7 +88,7 @@ public class ProductController {
 
         Long count = productService.getCountAllProducts();
 
-        resp.addHeader("Total_Count_Posts", String.valueOf(count));
+        resp.addHeader("Total_Count_Products", String.valueOf(count));
 
         return productService.getPageOfProduct(dto);
 

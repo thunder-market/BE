@@ -185,14 +185,9 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<ProductListResponseDto> getPageOfProduct(ReqProductPageableDto dto) {
-        Page<Product> products = productRepository.findAll(configPageAble(dto));
-        List<ProductListResponseDto> list = new ArrayList<>();
-        for (Product product : products) {
-            if (product.isDone() == false) {
-                list.add(new ProductListResponseDto(product));
-            }
-        }
-        return list;
+
+        return productRepository.findAllByIsDoneFalse(configPageAble(dto))
+                .stream().map(ProductListResponseDto::new).toList();
     }
 
     private Pageable configPageAble(ReqProductPageableDto dto) {
