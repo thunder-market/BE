@@ -99,7 +99,7 @@ public class ProductService {
             String div = "uploaded-image";
             s3Client.deleteObject(DeleteObjectRequest.builder().bucket(bucketName).key(div + "/" + img).build());
 //            새 이미지 등록
-            String key = UUID.randomUUID().toString(); // 또는 다른 고유한 키 생성 방법
+            String key = UUID.randomUUID().toString() + "_" + image.getOriginalFilename(); // 또는 다른 고유한 키 생성 방법
 
             PutObjectRequest request = PutObjectRequest.builder()
                     .bucket(bucketName)
