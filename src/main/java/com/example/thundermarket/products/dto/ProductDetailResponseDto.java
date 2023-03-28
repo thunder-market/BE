@@ -25,8 +25,10 @@ public class ProductDetailResponseDto {
     private List<ProductListResponseDto> productList = new ArrayList<>();
     private boolean isAuth = false;
     private String timeInterval;
+    private String nick;
 
     public ProductDetailResponseDto(Product getproduct, List<ProductListResponseDto> productListResponseDtos, boolean isAuth) {
+        this.nick = getproduct.getUser().getNick();
         this.id = getproduct.getId();
         this.img = getproduct.getImg();
         this.title = getproduct.getTitle();
