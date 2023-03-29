@@ -7,8 +7,6 @@ import com.example.thundermarket.users.service.KakaoService;
 import com.example.thundermarket.users.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -17,10 +15,10 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-public class UserConroller {
+public class UserController {
 
     private final UserService userService;
-    private final KakaoService kakaoService;
+
 
     // 1. 회원 가입
     @PostMapping("/signup")
@@ -46,19 +44,4 @@ public class UserConroller {
         return userService.login(dto, response);
     }
 
-//    3. 카카오
-//    카카오 로그인 반환값 string redirect로 할지 어떻게 할지 좀 더 고민
-    @GetMapping("/kakao/callback")
-    public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
-        // code: 카카오 서버로부터 받은 인가 코드
-        String createToken = kakaoService.kakaoLogin(code, response);
-
-        // Cookie 생성 및 직접 브라우저에 Set
-        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
-        cookie.setPath("/");
-        response.addCookie(cookie);
-
-        return "redirect:/products";
-
-    }
 }
