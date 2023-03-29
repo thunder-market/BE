@@ -49,7 +49,7 @@ public class UserConroller {
 //    3. 카카오
 //    카카오 로그인 반환값 string redirect로 할지 어떻게 할지 좀 더 고민
     @GetMapping("/kakao/callback")
-    public MessageResponseDto kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+    public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         // code: 카카오 서버로부터 받은 인가 코드
         String createToken = kakaoService.kakaoLogin(code, response);
 
@@ -58,6 +58,7 @@ public class UserConroller {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        return new MessageResponseDto(HttpStatus.OK,"카카오 로그인에 성공했습니다.") ;
+        return "redirect:/products";
+
     }
 }
