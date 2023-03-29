@@ -9,13 +9,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class UserConroller {
 
@@ -24,25 +25,25 @@ public class UserConroller {
 
     // 1. 회원 가입
     @PostMapping("/signup")
-    public MessageResponseDto signup(@Valid @RequestBody SignupRequestDto dto){
+    public @ResponseBody MessageResponseDto signup(@Valid @RequestBody SignupRequestDto dto){
         return userService.signup(dto);
     }
 
     // 1-1. 회원 가입시 이메일 체크
     @PostMapping("/signup/check-email")
-    public MessageResponseDto signupEmailCheck(@Valid @RequestBody CheckEmailRequestDto dto){
+    public @ResponseBody MessageResponseDto signupEmailCheck(@Valid @RequestBody CheckEmailRequestDto dto){
         return userService.signupEmailCheck(dto);
     }
 
     // 1-2. 회원 가입시 닉네임 체크
     @PostMapping("/signup/check-nick")
-    public MessageResponseDto signupEmailCheck(@Valid @RequestBody CheckNickRequestDto dto){
+    public @ResponseBody MessageResponseDto signupEmailCheck(@Valid @RequestBody CheckNickRequestDto dto){
         return userService.signupNickCheck(dto);
     }
 
 //    2. 로그인
     @PostMapping("/login")
-    public LoginResponseDto login(@Valid @RequestBody LoginRequestDto dto, HttpServletResponse response){
+    public @ResponseBody LoginResponseDto login(@Valid @RequestBody LoginRequestDto dto, HttpServletResponse response){
         return userService.login(dto, response);
     }
 
@@ -58,7 +59,7 @@ public class UserConroller {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        return "redirect:/products";
+        return "redirect:http://clone-thunder-market.s3-website.ap-northeast-2.amazonaws.com/";
 
     }
 }
