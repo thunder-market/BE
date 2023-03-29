@@ -25,11 +25,11 @@ public class KakaoController {
         String createToken = kakaoService.kakaoLogin(code, response);
 
         // Cookie 생성 및 직접 브라우저에 Set
-//        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
-//        cookie.setPath("/");
-//        response.addCookie(cookie);
+        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
+        cookie.setPath("http://clone-thunder-market.s3-website.ap-northeast-2.amazonaws.com");
+        response.addCookie(cookie);
 
-        return "redirect:/products";
+        return "redirect:http://clone-thunder-market.s3-website.ap-northeast-2.amazonaws.com/";
 
     }
 }
