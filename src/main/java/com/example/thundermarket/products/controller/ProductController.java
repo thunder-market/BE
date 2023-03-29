@@ -60,7 +60,7 @@ public class ProductController {
                                      @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
 
         // 수정하려는 이미지가 없으면 text만 수정하는 로직으로 이동
-        if (image == null || image.isEmpty()) return productService.textUpdate(pdid, productRequestDto, userDetails.getUser());
+        if (image.getOriginalFilename() == "" || image.isEmpty() || image == null) return productService.textUpdate(pdid, productRequestDto, userDetails.getUser());
         // 수정하려는 이미지가 있으면 이미지와 text를 같이 수정하는 로직으로 이동
         validateImage(image);
         return productService.update(pdid, productRequestDto, userDetails.getUser(), image);
