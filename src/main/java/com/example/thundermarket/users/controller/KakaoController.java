@@ -23,12 +23,11 @@ public class KakaoController {
     public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         // code: 카카오 서버로부터 받은 인가 코드
         String createToken = kakaoService.kakaoLogin(code, response);
-
         // Cookie 생성 및 직접 브라우저에 Set
-        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
-        cookie.setPath("http://clone-thunder-market.s3-website.ap-northeast-2.amazonaws.com");
-        response.addCookie(cookie);
-
+//        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
+////        cookie.setDomain();
+//        cookie.setPath("http://clone-thunder-market.s3-website.ap-northeast-2.amazonaws.com");
+//        response.addCookie(cookie);
         return "redirect:http://clone-thunder-market.s3-website.ap-northeast-2.amazonaws.com/";
 
     }
