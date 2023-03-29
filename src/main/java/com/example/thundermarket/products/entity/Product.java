@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -33,7 +34,7 @@ public class Product extends Timestamped {
     @Column(nullable = false)
     private boolean deliveryFee;
 
-    @Column(nullable = false, length = 6000) // 상품 설명, 글자1자 = 1 ~ 3byte
+    @Column(nullable = false, length = 2000) // 상품 설명, 최대 2000자
     private String desc;
 
     @Column(nullable = false) // 판매완료면 t, 아니면 f
