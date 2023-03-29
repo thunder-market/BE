@@ -1,4 +1,4 @@
-package com.example.thundermarket.products.service;
+package com.example.thundermarket.products.s3;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Service
 public class S3ImageService {
-//    현재 쓰이지 않는 서비스. 추후 주석처리나 삭제
+//    현재 쓰이지 않는 서비스
 
     private final S3Client s3Client;
     private final String bucketName;

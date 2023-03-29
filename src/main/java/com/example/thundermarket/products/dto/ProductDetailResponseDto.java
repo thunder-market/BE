@@ -1,7 +1,6 @@
 package com.example.thundermarket.products.dto;
 
 import com.example.thundermarket.products.entity.Product;
-import com.example.thundermarket.util.KorPrice;
 import com.example.thundermarket.util.TimeInteval;
 import lombok.Getter;
 
@@ -26,8 +25,6 @@ public class ProductDetailResponseDto {
     private List<ProductListResponseDto> productList = new ArrayList<>();
     private boolean isAuth = false;
     private String timeInterval;
-
-//    private  String wonPrice;
     private String nick;
 
     public ProductDetailResponseDto(Product getproduct, List<ProductListResponseDto> productListResponseDtos, boolean isAuth) {
@@ -47,6 +44,5 @@ public class ProductDetailResponseDto {
         this.productList = productListResponseDtos;
         this.isAuth = isAuth;
         this.timeInterval = TimeInteval.Calculate(getproduct.getCreatedAt());
-//        this.wonPrice = KorPrice.format(getproduct.getPrice());
     }
 }

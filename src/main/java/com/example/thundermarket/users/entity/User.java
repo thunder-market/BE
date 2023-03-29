@@ -13,9 +13,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(nullable = false, unique = true)
-//    private String username;
-
     @Column(nullable = false)
     private String password;
 
@@ -41,7 +38,6 @@ public class User {
     }
 
     public User(Long kakaoId,String nick, String password, String email, UserRoleEnum role) {
-//        this.username = username;
         this.kakaoId = kakaoId;
         this.nick = nick;
         this.password = password;

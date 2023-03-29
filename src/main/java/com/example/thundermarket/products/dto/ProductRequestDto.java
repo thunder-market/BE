@@ -9,8 +9,6 @@ import javax.validation.constraints.Size;
 @Getter
 public class ProductRequestDto {
 
-    // 제약사항 나중에 추가 예정
-
     @Size(min = 2, max = 40)
     @NotBlank(message = "제목을 입력하세요.")
     private String title;

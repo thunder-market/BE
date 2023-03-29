@@ -9,16 +9,6 @@ INSERT INTO USERS VALUES (8, 'testuser3@example.com', null, '김건율', '$2a$10
 INSERT INTO USERS VALUES (9, 'testuser5@example.com', null, '양인서', '$2a$10$4v4ETGTnjZjDw674aiSmxuRAJHhaERZzp6At8ER8yk6svHttlAjoK', 'USER');
 
 
-INSERT INTO CATEGORY VALUES(1, 100, '여성의류');
-INSERT INTO CATEGORY VALUES(2, 200, '남성의류');
-INSERT INTO CATEGORY VALUES(3, 300, '신발');
-INSERT INTO CATEGORY VALUES(4, 400, '가방');
-INSERT INTO CATEGORY VALUES(5, 500, '시계/주얼리');
-INSERT INTO CATEGORY VALUES(6, 600, '패션 액세서리');
-INSERT INTO CATEGORY VALUES(7, 700, '디지털/가전');
-INSERT INTO CATEGORY VALUES(8, 800, '스포츠/레저');
-
-
 INSERT INTO PRODUCT VALUES (1,'2022-11-29T15:30','2022-11-29T15:30',1,'TRUE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','FALSE','6b9129e6-f3e9-4e08-8927-7b4ab9b8809a_경찰 코스프레복 만원.jpg','FALSE',10000,1,'TRUE','경찰 코스프레복','TRUE',1);
 INSERT INTO PRODUCT VALUES (2,'2022-11-30T15:30','2022-11-30T15:30',1,'TRUE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','FALSE','eca2961b-98c6-4faa-bde3-61117ba4194d_나이키 반팔 만원.jpg','FALSE',10000,1,'FALSE','나이키 반팔 만원','TRUE',2);
 INSERT INTO PRODUCT VALUES (3,'2022-12-01T15:30','2022-12-01T15:30',1,'TRUE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','FALSE','300c2024-763a-457a-881e-1b9deac8e3b3_데님진 12개 일괄 5만.jpg','FALSE',50000,12,'TRUE','데님진 12개 일괄','TRUE',3);
@@ -81,7 +71,6 @@ INSERT INTO PRODUCT VALUES (59,'2023-01-26T15:30','2023-01-26T15:30',4,'FALSE','
 INSERT INTO PRODUCT VALUES (60,'2023-01-27T15:30','2023-01-27T15:30',4,'TRUE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','FALSE','f12c945c-846c-4fa1-8a6f-d7a91c1c0ce8_하 아카이브 워털루 스트링백 가방 23000.jpg','FALSE',23000,1,'TRUE','하 아카이브 워털루 스트링백 가방','TRUE',6);
 INSERT INTO PRODUCT VALUES (61,'2023-01-28T15:30','2023-01-28T15:30',5,'TRUE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','TRUE','21b9966d-2926-4523-bf17-fa58d9be910b_금은방 주인도 몰라봐 팔각목걸이 금목걸이 도금목걸이 남자금목걸이 금 8만.jpg','FALSE',80000,1,'TRUE','금은방주인도 몰라봐! 팔각 목걸이 금목걸이','FALSE',7);
 INSERT INTO PRODUCT VALUES (62,'2023-01-29T15:30','2023-01-29T15:30',5,'TRUE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','FALSE','746067af-65f4-4a57-abb6-fccfa91e2bbf_납짝 민무늬 보카시 팔각팔찌 2종 남자금팔찌 도금팔찌 금팔찌 24k 10만.jpg','FALSE',100000,2,'TRUE','납짝 민무늬 보카시 팔각 팔찌 2종 남자 금팔찌','TRUE',8);
-INSERT INTO PRODUCT VALUES (63,'2023-01-30T15:30','2023-01-30T15:30',5,'TRUE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','TRUE','dbb933f6-d931-4566-be37-a2482407dc7a_신상 스카웃 보카시 대나무목걸이 6mm 금목걸이 남자금목걸이 도금 9만.jpg.jpg','FALSE',90000,1,'FALSE','신상 스카웃 보카시 대나무 목걸이 6mm','TRUE',9);
 INSERT INTO PRODUCT VALUES (64,'2023-01-31T15:30','2023-01-31T15:30',5,'FALSE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','FALSE','8e5b4315-4317-44b6-b9eb-9ca083d76380_14k컷팅귀걸이(싸게드려요) 8만.jpg','FALSE',80000,1,'TRUE','14k 컷팅 귀걸이 (싸게 드려요)','TRUE',1);
 INSERT INTO PRODUCT VALUES (65,'2023-02-01T15:30','2023-02-01T15:30',5,'TRUE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','TRUE','52ce22c3-f572-47a9-84d9-9d6fcee1a72b_ost시계 15000.jpg','FALSE',15000,1,'FALSE','ost 시계','FALSE',2);
 INSERT INTO PRODUCT VALUES (66,'2023-02-02T15:30','2023-02-02T15:30',5,'FALSE','실사용 거의 안한 새제품에 가깝습니다. 직거래 환영입니다.','FALSE','061b3553-8d9e-4e8a-aaa8-8b11cf0c7f92_구찌 인터로킹 G씬 오픈밴드 30만.jpg','FALSE',300000,1,'TRUE','구찌 인터로킹 g씬 오픈밴드','TRUE',3);
