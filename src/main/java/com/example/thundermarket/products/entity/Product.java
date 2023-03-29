@@ -33,7 +33,7 @@ public class Product extends Timestamped {
     @Column(nullable = false)
     private boolean deliveryFee;
 
-    @Column(nullable = false) // 상품 설명
+    @Column(nullable = false, length = 6000) // 상품 설명, 글자1자 = 1 ~ 3byte
     private String desc;
 
     @Column(nullable = false) // 판매완료면 t, 아니면 f

@@ -53,7 +53,6 @@ public class WebSecurityConfig {
         http.authorizeRequests().antMatchers("/signup/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/kakao/callback").permitAll()
-                .antMatchers("/category").permitAll()
                 .antMatchers(HttpMethod.GET, "/products/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/products").permitAll()
                 .anyRequest().authenticated()
