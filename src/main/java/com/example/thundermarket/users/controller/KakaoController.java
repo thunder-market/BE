@@ -22,14 +22,14 @@ public class KakaoController {
 
     //    카카오 로그인 반환값 string redirect로 할지 어떻게 할지 좀 더 고민
     @GetMapping("/kakao/callback")
-    public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+    public LoginResponseDto kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         // code: 카카오 서버로부터 받은 인가 코드
         String nick = kakaoService.kakaoLogin(code, response);
         // Cookie 생성 및 직접 브라우저에 Set
 //        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
 ////        cookie.setDomain("http://clone-thunder-market.s3-website.ap-northeast-2.amazonaws.com");
 //        response.addCookie(cookie);
-        return "redirect:localhost:3000";
+        return new LoginResponseDto(nick);
 
     }
 }
