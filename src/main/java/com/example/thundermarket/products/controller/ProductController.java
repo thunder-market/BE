@@ -94,4 +94,10 @@ public class ProductController {
         if (image.getSize() > MAX_FILE_SIZE) throw new IllegalStateException("파일 사이즈가 최대 사이즈(5MB)를 초과합니다.");
         if (!ALLOWED_IMAGE_CONTENT_TYPES.contains(image.getContentType())) throw new IllegalStateException("파일 형식은 JPEG, JPG, PNG, GIF 중 하나여야 합니다.");
     }
+    
+    @PostMapping("/{pdid}/dibs")
+    public MessageResponseDto dibs(@PathVariable Long pdid,
+                                   @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return productService.dibs(pdid, userDetails.getUser());
+    }
 }

@@ -2,6 +2,9 @@ package com.example.thundermarket.products.service;
 
 import com.example.thundermarket.products.dto.*;
 import com.example.thundermarket.products.entity.Product;
+
+import com.example.thundermarket.products.entity.ProductDibs;
+import com.example.thundermarket.products.repository.ProductDibsRepository;
 import com.example.thundermarket.products.repository.ProductRepository;
 import com.example.thundermarket.users.entity.User;
 import com.example.thundermarket.users.entity.UserRoleEnum;
@@ -21,6 +24,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -29,6 +33,8 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductDibsRepository productDibsRepository;
+
     private final S3Client s3Client;
     private final String bucketName;
 
@@ -55,7 +61,8 @@ public class ProductService {
 
     }
 
-    //    상품 작성
+
+    // 상품 작성
     @Transactional
     public MessageResponseDto createProduct(ProductRequestDto productRequestDto, User user, MultipartFile image) throws IOException {
 
@@ -65,7 +72,7 @@ public class ProductService {
         return new MessageResponseDto(HttpStatus.OK, "상품이 등록되었습니다.");
     }
 
-    //    전체 상품 조회
+    // 전체 상품 조회
     @Transactional(readOnly = true)
     public List<ProductListResponseDto> getProductList() {
         List<ProductListResponseDto> productListResponseDtos = new ArrayList<>();
@@ -82,11 +89,18 @@ public class ProductService {
         Product getProduct = productRepository.findById(pdid).orElseThrow(
                 () -> new IllegalArgumentException("상품을 찾을 수 없습니다.")
         );
+
         boolean isAuth = false;
         if (user != null) {
             if (user.getRole() == UserRoleEnum.ADMIN || user.getId().equals(getProduct.getUser().getId())) {
                 isAuth = true;
             }
+        }
+
+        boolean isDibs = false;
+        Optional<ProductDibs> userProductDib = productDibsRepository.findByUserIdAndProductId(user.getId(), getproduct.getId());
+        if (userProductDib.isPresent()) {
+            isDibs = true;
         }
 
         // 조회하고 있는 상품과 동일한 카테고리인 최신 상품 리스트 6개 반환
@@ -95,7 +109,7 @@ public class ProductService {
                 .map(ProductListResponseDto::new)
                 .collect(Collectors.toList());
 
-        return new ProductDetailResponseDto(getProduct, productListResponseDtos, isAuth);
+        return new ProductDetailResponseDto(getproduct, productListResponseDtos, isAuth, isDibs);
     }
 
     //    상품 수정
@@ -118,7 +132,6 @@ public class ProductService {
             return new MessageResponseDto(HttpStatus.OK, "상품이 수정 되었습니다.");
         }
         throw new IllegalArgumentException("상품을 수정할 권한이 없습니다.");
-
     }
 
     // 상품 사진제외하고 수정
@@ -199,5 +212,19 @@ public class ProductService {
         return PageRequest.of(dto.getPage() - 1, dto.getSize(), sort);
     }
 
+    @Transactional
+    public MessageResponseDto dibs(Long pdid, User user) {
 
+        Product getProduct = productRepository.findById(pdid).orElseThrow(
+                () -> new IllegalArgumentException("찜 할 게시물이 없습니다.")
+        );
+
+        Optional<ProductDibs> productDibs = productDibsRepository.findByUserIdAndProductId(user.getId(), getProduct.getId());
+
+        if (productDibs.isEmpty()) {
+            productDibsRepository.save(new ProductDibs(user.getId(), getProduct.getId()));
+            return new MessageResponseDto(HttpStatus.OK, "상품 찜 성공");
+        }
+        productDibsRepository.deleteByUserIdAndProductId(user.getId(), getProduct.getId());
+        return new MessageResponseDto(HttpStatus.OK, "상품 찜 삭제 성공");
 }

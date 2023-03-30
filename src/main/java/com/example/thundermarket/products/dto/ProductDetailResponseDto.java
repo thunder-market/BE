@@ -22,13 +22,17 @@ public class ProductDetailResponseDto {
     private boolean isDone;
     private boolean thunderPay;
     private int quantity;
-    private List<ProductListResponseDto> productList = new ArrayList<>();
+    private List<ProductListResponseDto> productList;
     private boolean isAuth = false;
     private String timeInterval;
     private String nick;
+    private boolean dibs;
+    private int dibsNum;
 
-    public ProductDetailResponseDto(Product getproduct, List<ProductListResponseDto> productListResponseDtos, boolean isAuth) {
-        this.nick = getproduct.getUser().getNick();
+    public ProductDetailResponseDto(Product getproduct,
+                                    List<ProductListResponseDto> productListResponseDtos,
+                                    boolean isAuth,
+                                    boolean isDibs) {
         this.id = getproduct.getId();
         this.img = getproduct.getImg();
         this.title = getproduct.getTitle();
@@ -44,5 +48,9 @@ public class ProductDetailResponseDto {
         this.productList = productListResponseDtos;
         this.isAuth = isAuth;
         this.timeInterval = TimeInteval.Calculate(getproduct.getCreatedAt());
+        this.nick = getproduct.getUser().getNick();
+        this.dibs = isDibs;
+        this.dibsNum = getproduct.getProductDibsList().size();
     }
+
 }
