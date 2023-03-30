@@ -98,7 +98,7 @@ public class ProductService {
         }
 
         boolean isDibs = false;
-        Optional<ProductDibs> userProductDib = productDibsRepository.findByUserIdAndProductId(user.getId(), getproduct.getId());
+        Optional<ProductDibs> userProductDib = productDibsRepository.findByUserIdAndProductId(user.getId(), getProduct.getId());
         if (userProductDib.isPresent()) {
             isDibs = true;
         }
@@ -109,7 +109,7 @@ public class ProductService {
                 .map(ProductListResponseDto::new)
                 .collect(Collectors.toList());
 
-        return new ProductDetailResponseDto(getproduct, productListResponseDtos, isAuth, isDibs);
+        return new ProductDetailResponseDto(getProduct, productListResponseDtos, isAuth, isDibs);
     }
 
     //    상품 수정
@@ -227,4 +227,5 @@ public class ProductService {
         }
         productDibsRepository.deleteByUserIdAndProductId(user.getId(), getProduct.getId());
         return new MessageResponseDto(HttpStatus.OK, "상품 찜 삭제 성공");
+    }
 }
