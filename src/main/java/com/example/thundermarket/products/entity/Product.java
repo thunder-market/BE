@@ -6,7 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.constraints.Size;
+
 
 @Entity
 @Getter
@@ -52,6 +55,10 @@ public class Product extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany
+    @JoinColumn(name = "productId")
+    List<ProductDibs> productDibsList = new ArrayList<>();
 
     public Product(ProductRequestDto productRequestDto, User user, String key) {
         this.img = key;
