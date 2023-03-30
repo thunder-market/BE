@@ -98,9 +98,11 @@ public class ProductService {
         }
 
         boolean isDibs = false;
-        Optional<ProductDibs> userProductDib = productDibsRepository.findByUserIdAndProductId(user.getId(), getProduct.getId());
-        if (userProductDib.isPresent()) {
-            isDibs = true;
+        if (user != null) {
+            Optional<ProductDibs> userProductDib = productDibsRepository.findByUserIdAndProductId(user.getId(), getProduct.getId());
+            if (userProductDib.isPresent()) {
+                isDibs = true;
+            }
         }
 
         // 조회하고 있는 상품과 동일한 카테고리인 최신 상품 리스트 6개 반환
