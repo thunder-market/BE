@@ -1,7 +1,5 @@
-package com.example.thundermarket.products.controller;
+package com.example.thundermarket.products.s3;
 
-import com.example.thundermarket.products.dto.ImageResponseDto;
-import com.example.thundermarket.products.service.S3ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class S3ImageController {
+//    현재 쓰이지 않는 컨트롤러
 
     private final S3ImageService s3ImageService;
     private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB

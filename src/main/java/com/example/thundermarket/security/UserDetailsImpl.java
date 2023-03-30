@@ -19,8 +19,6 @@ public class UserDetailsImpl implements UserDetails {
         this.email = email;
     }
 
-
-//    유저 role 필요하면 넣어야한다!!
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         UserRoleEnum role = user.getRole();

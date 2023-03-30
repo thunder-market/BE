@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.Size;
+
 
 @Entity
 @Getter
@@ -35,7 +37,7 @@ public class Product extends Timestamped {
     @Column(nullable = false)
     private boolean deliveryFee;
 
-    @Column(nullable = false) // 상품 설명
+    @Column(nullable = false, length = 2000) // 상품 설명, 최대 2000자
     private String desc;
 
     @Column(nullable = false) // 판매완료면 t, 아니면 f
@@ -58,8 +60,8 @@ public class Product extends Timestamped {
     @JoinColumn(name = "productId")
     List<ProductDibs> productDibsList = new ArrayList<>();
 
-    public Product(ProductRequestDto productRequestDto, User user) {
-        this.img = productRequestDto.getImg();
+    public Product(ProductRequestDto productRequestDto, User user, String key) {
+        this.img = key;
         this.title = productRequestDto.getTitle();
         this.used = productRequestDto.isUsed();
         this.exchange = productRequestDto.isExchange();
@@ -73,8 +75,8 @@ public class Product extends Timestamped {
         this.cateCode = productRequestDto.getCateCode();
     }
 
-    public void update(ProductRequestDto productRequestDto) {
-        this.img = productRequestDto.getImg();
+    public void update(ProductRequestDto productRequestDto, String key) {
+        this.img = key;
         this.title = productRequestDto.getTitle();
         this.used = productRequestDto.isUsed();
         this.exchange = productRequestDto.isExchange();
@@ -86,4 +88,22 @@ public class Product extends Timestamped {
         this.isDone = productRequestDto.isDone();
         this.cateCode = productRequestDto.getCateCode();
     }
+
+    public void textUpdate(ProductRequestDto productRequestDto) {
+        this.title = productRequestDto.getTitle();
+        this.used = productRequestDto.isUsed();
+        this.exchange = productRequestDto.isExchange();
+        this.price = productRequestDto.getPrice();
+        this.deliveryFee = productRequestDto.isDeliveryFee();
+        this.desc = productRequestDto.getDesc();
+        this.quantity = productRequestDto.getQuantity();
+        this.thunderPay = productRequestDto.isThunderPay();
+        this.isDone = productRequestDto.isDone();
+        this.cateCode = productRequestDto.getCateCode();
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
 }

@@ -25,6 +25,7 @@ public class ProductDetailResponseDto {
     private List<ProductListResponseDto> productList;
     private boolean isAuth = false;
     private String timeInterval;
+    private String nick;
     private boolean dibs;
     private int dibsNum;
 
@@ -47,6 +48,7 @@ public class ProductDetailResponseDto {
         this.productList = productListResponseDtos;
         this.isAuth = isAuth;
         this.timeInterval = TimeInteval.Calculate(getproduct.getCreatedAt());
+        this.nick = getproduct.getUser().getNick();
         this.dibs = isDibs;
         this.dibsNum = getproduct.getProductDibsList().size();
     }

@@ -2,10 +2,7 @@ package com.example.thundermarket.users.service;
 
 import com.example.thundermarket.jwt.JwtUtil;
 import com.example.thundermarket.products.dto.MessageResponseDto;
-import com.example.thundermarket.users.dto.CheckEmailRequestDto;
-import com.example.thundermarket.users.dto.CheckNickRequestDto;
-import com.example.thundermarket.users.dto.LoginRequestDto;
-import com.example.thundermarket.users.dto.SignupRequestDto;
+import com.example.thundermarket.users.dto.*;
 import com.example.thundermarket.users.entity.User;
 import com.example.thundermarket.users.repository.UserRepository;
 import com.example.thundermarket.users.entity.UserRoleEnum;
@@ -37,13 +34,12 @@ public class UserService {
         String password = encoder.encode(dto.getPassword());
         String nick = dto.getNick();
 
-//        이메일 닉네임 중복체크는 추후 프론트와 협의후 삭제 or 유지
+//      클라이언트에서 중복을 확인하지만 서버에서도 한번더 중복을 확인함.
         boolean isEmailExist = userRepository.existsByEmail(dto.getEmail());
         if (isEmailExist) throw new IllegalArgumentException("이미 가입된 이메일입니다.");
 
         boolean isNickExist = userRepository.existsByNick(dto.getNick());
         if (isNickExist) throw new IllegalArgumentException("이미 가입된 닉네임입니다.");
-
 
         UserRoleEnum role = UserRoleEnum.USER;
         if(dto.isAdmin()){
@@ -59,8 +55,8 @@ public class UserService {
     }
 
 //    로그인
-    @Transactional
-    public MessageResponseDto login(LoginRequestDto dto, HttpServletResponse response){
+    @Transactional(readOnly = true)
+    public LoginResponseDto login(LoginRequestDto dto, HttpServletResponse response){
         String email = dto.getEmail();
 
         User user = userRepository.findByEmail(email).orElseThrow(
@@ -73,7 +69,7 @@ public class UserService {
             throw new IllegalArgumentException("비밀번호가 맞지 않습니다.");
         }
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getEmail(), user.getRole()));
-        return new MessageResponseDto(HttpStatus.OK, "로그인이 완료되었습니다.");
+        return new LoginResponseDto(user.getNick());
     }
 
 //    이메일 중복 체크. 이메일이 있으면 true - 중복된 이메일 반환 / 이메일이 없으면 false 사용가능한 이메일

@@ -1,4 +1,4 @@
-package com.example.thundermarket.products.dto;
+package com.example.thundermarket.products.s3;
 
 import lombok.Getter;
 
@@ -11,3 +11,4 @@ public class ImageResponseDto {
         this.imageId = key;
     }
 }
+// 현재 프로젝트에서 쓰지않는 클래스

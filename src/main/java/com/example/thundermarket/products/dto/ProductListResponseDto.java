@@ -4,10 +4,6 @@ import com.example.thundermarket.products.entity.Product;
 import com.example.thundermarket.util.TimeInteval;
 import lombok.Getter;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-
 @Getter
 public class ProductListResponseDto {
 
