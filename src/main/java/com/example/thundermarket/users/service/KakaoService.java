@@ -57,7 +57,7 @@ public class KakaoService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "8556f063804f3a560b2aa9a26c924279");
-        body.add("redirect_uri", "http://localhost:3000/oauth");
+        body.add("redirect_uri", "http://clone-thunder-market.s3-website.ap-northeast-2.amazonaws.com/oauth");
         body.add("code", code);
 
         // HTTP 요청 보내기
