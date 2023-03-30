@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.constraints.Size;
 
 
 @Entity
@@ -56,7 +55,7 @@ public class Product extends Timestamped {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "productId")
     List<ProductDibs> productDibsList = new ArrayList<>();
 
