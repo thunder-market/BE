@@ -45,7 +45,7 @@ public class KakaoService {
         String createToken =  jwtUtil.createToken(kakaoUser.getEmail(), kakaoUser.getRole());
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken);
 
-        return kakaoUserInfo.getNick();
+        return kakaoUserInfo.getNick() + "_"+ kakaoUserInfo.getId();
     }
     // 1. "인가 코드"로 "액세스 토큰" 요청
     private String getToken(String code) throws JsonProcessingException {
